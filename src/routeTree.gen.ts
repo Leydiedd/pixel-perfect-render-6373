@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PedidoRouteImport } from './routes/pedido'
+import { Route as PedidoRapidoRouteImport } from './routes/pedido-rapido'
 import { Route as ProductoSkuRouteImport } from './routes/producto.$sku'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const PedidoRoute = PedidoRouteImport.update({
   path: '/pedido',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PedidoRapidoRoute = PedidoRapidoRouteImport.update({
+  id: '/pedido-rapido',
+  path: '/pedido-rapido',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductoSkuRoute = ProductoSkuRouteImport.update({
   id: '/producto/$sku',
   path: '/producto/$sku',
@@ -32,30 +38,34 @@ const ProductoSkuRoute = ProductoSkuRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/pedido': typeof PedidoRoute
+  '/pedido-rapido': typeof PedidoRapidoRoute
   '/producto/$sku': typeof ProductoSkuRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/pedido': typeof PedidoRoute
+  '/pedido-rapido': typeof PedidoRapidoRoute
   '/producto/$sku': typeof ProductoSkuRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/pedido': typeof PedidoRoute
+  '/pedido-rapido': typeof PedidoRapidoRoute
   '/producto/$sku': typeof ProductoSkuRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/pedido' | '/producto/$sku'
+  fullPaths: '/' | '/pedido' | '/pedido-rapido' | '/producto/$sku'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/pedido' | '/producto/$sku'
-  id: '__root__' | '/' | '/pedido' | '/producto/$sku'
+  to: '/' | '/pedido' | '/pedido-rapido' | '/producto/$sku'
+  id: '__root__' | '/' | '/pedido' | '/pedido-rapido' | '/producto/$sku'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PedidoRoute: typeof PedidoRoute
+  PedidoRapidoRoute: typeof PedidoRapidoRoute
   ProductoSkuRoute: typeof ProductoSkuRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PedidoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pedido-rapido': {
+      id: '/pedido-rapido'
+      path: '/pedido-rapido'
+      fullPath: '/pedido-rapido'
+      preLoaderRoute: typeof PedidoRapidoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/producto/$sku': {
       id: '/producto/$sku'
       path: '/producto/$sku'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PedidoRoute: PedidoRoute,
+  PedidoRapidoRoute: PedidoRapidoRoute,
   ProductoSkuRoute: ProductoSkuRoute,
 }
 export const routeTree = rootRouteImport
