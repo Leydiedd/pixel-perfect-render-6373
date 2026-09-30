@@ -182,8 +182,9 @@ export const productos: Producto[] = [
     lotes: [{ lote: "L-2470F", caducidad: "2026-10-16", planchas: 154 }],
     imagenes: [img("photo-1534620808146-d33bb39128b2"), img("photo-1581929955747-1e0a8e05d2b7")],
   },
-  {
-    sku: "BIM-PD-700",
+];
+
+export const familias: Familia[] = ["Pan de molde", "Bollería", "Integrales"];
 
 export function buscarProducto(sku: string) {
   const clave = sku.trim().toUpperCase();
@@ -215,7 +216,6 @@ export const plantillas: Plantilla[] = [
       { sku: "BIM-PL-500", planchas: 20 },
       { sku: "BIM-PI-600", planchas: 20 },
       { sku: "BIM-MN-240", planchas: 12 },
-      { sku: "BIM-TM-400", planchas: 12 },
     ],
   },
   {
@@ -224,7 +224,6 @@ export const plantillas: Plantilla[] = [
     descripcion: "Parrilla, sándwich e impulso para viernes a domingo.",
     lineas: [
       { sku: "BIM-BD-300", planchas: 16 },
-      { sku: "BIM-PH-550", planchas: 16 },
       { sku: "BIM-DN-250", planchas: 10 },
       { sku: "BIM-QQ-320", planchas: 8 },
     ],
