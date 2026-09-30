@@ -108,7 +108,10 @@ export const productos: Producto[] = [
       { lote: "L-2420L", caducidad: "2026-10-14", planchas: 160 },
       { lote: "L-2420M", caducidad: "2026-10-22", planchas: 100 },
     ],
-    imagenes: [img("photo-1486427944299-d1955d23e34d"), img("photo-1608198093002-ad4e005484ec")],
+    imagenes: [
+      "/__l5e/assets-v1/891fb3d5-619a-4575-9a90-5a1baf09a90c/pan-lactal-blanco-bimbo-610g.webp",
+      img("photo-1608198093002-ad4e005484ec"),
+    ],
   },
   {
     sku: "BIM-BD-300",
