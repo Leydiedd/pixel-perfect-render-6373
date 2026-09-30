@@ -1,4 +1,4 @@
-export type Familia = "Pan de molde" | "Bollería" | "Integrales" | "Tortillas";
+export type Familia = "Pan de molde" | "Bollería" | "Integrales";
 
 export type Lote = {
   lote: string;
@@ -90,24 +90,6 @@ export const productos: Producto[] = [
     imagenes: [img("photo-1555507036-ab1f4038808a"), img("photo-1517686469429-8bdb88b9f907")],
   },
   {
-    sku: "BIM-TB-450",
-    nombre: "Tortillas de Trigo 450 g",
-    familia: "Tortillas",
-    descripcion:
-      "Tortilla de trigo flexible, 10 unidades por paquete. Complemento clave en la sección de panificados.",
-    unidadesPorPlancha: 14,
-    planchasPorPaleta: 42,
-    minimoPlanchas: 6,
-    stockPlanchas: 96,
-    precios: [
-      { desdePlanchas: 1, precio: 30.4 },
-      { desdePlanchas: 18, precio: 29.0 },
-      { desdePlanchas: 42, precio: 27.6 },
-    ],
-    lotes: [{ lote: "L-2415T", caducidad: "2026-11-02", planchas: 96 }],
-    imagenes: [img("photo-1565299624946-b28f40a0ae38"), img("photo-1512058564366-18510be2db19")],
-  },
-  {
     sku: "BIM-PL-500",
     nombre: "Pan Lactal Sándwich 500 g",
     familia: "Pan de molde",
@@ -183,24 +165,6 @@ export const productos: Producto[] = [
     imagenes: [img("photo-1551024601-bec78aea704b"), img("photo-1533134242443-d4fd215305ad")],
   },
   {
-    sku: "BIM-TM-400",
-    nombre: "Tortillas de Maíz 400 g",
-    familia: "Tortillas",
-    descripcion:
-      "Tortilla de maíz nixtamalizado, 18 unidades. Reposición semanal recomendada por rotación constante.",
-    unidadesPorPlancha: 14,
-    planchasPorPaleta: 42,
-    minimoPlanchas: 6,
-    stockPlanchas: 188,
-    precios: [
-      { desdePlanchas: 1, precio: 25.6 },
-      { desdePlanchas: 21, precio: 24.4 },
-      { desdePlanchas: 42, precio: 23.2 },
-    ],
-    lotes: [{ lote: "L-2462X", caducidad: "2026-10-28", planchas: 188 }],
-    imagenes: [img("photo-1552332386-f8dd00dc2f85"), img("photo-1599974579688-8dbdd335c77f")],
-  },
-  {
     sku: "BIM-PD-700",
     nombre: "Pan Doble Fibra 700 g",
     familia: "Integrales",
@@ -218,45 +182,9 @@ export const productos: Producto[] = [
     lotes: [{ lote: "L-2470F", caducidad: "2026-10-16", planchas: 154 }],
     imagenes: [img("photo-1534620808146-d33bb39128b2"), img("photo-1581929955747-1e0a8e05d2b7")],
   },
-  {
-    sku: "BIM-QQ-320",
-    nombre: "Queques Individuales 6 unidades",
-    familia: "Bollería",
-    descripcion:
-      "Queque de vainilla en porción individual. Formato de lonchera con demanda estable todo el año.",
-    unidadesPorPlancha: 12,
-    planchasPorPaleta: 36,
-    minimoPlanchas: 4,
-    stockPlanchas: 205,
-    precios: [
-      { desdePlanchas: 1, precio: 29.7 },
-      { desdePlanchas: 18, precio: 28.3 },
-      { desdePlanchas: 36, precio: 26.9 },
-    ],
-    lotes: [{ lote: "L-2481Q", caducidad: "2026-11-08", planchas: 205 }],
-    imagenes: [img("photo-1578985545062-69928b1d9587"), img("photo-1519869325930-281384150729")],
-  },
-  {
-    sku: "BIM-PH-550",
-    nombre: "Pan de Hot Dog 8 unidades",
-    familia: "Pan de molde",
-    descripcion:
-      "Pan alargado suave para hot dog, empaque por ocho. Reposición sugerida dos veces por semana.",
-    unidadesPorPlancha: 10,
-    planchasPorPaleta: 32,
-    minimoPlanchas: 4,
-    stockPlanchas: 118,
-    precios: [
-      { desdePlanchas: 1, precio: 23.8 },
-      { desdePlanchas: 16, precio: 22.6 },
-      { desdePlanchas: 32, precio: 21.4 },
-    ],
-    lotes: [{ lote: "L-2492W", caducidad: "2026-10-13", planchas: 118 }],
-    imagenes: [img("photo-1619740455993-9d77a82c8559"), img("photo-1594007654729-407eedc4be65")],
-  },
 ];
 
-export const familias: Familia[] = ["Pan de molde", "Bollería", "Integrales", "Tortillas"];
+export const familias: Familia[] = ["Pan de molde", "Bollería", "Integrales"];
 
 export function buscarProducto(sku: string) {
   const clave = sku.trim().toUpperCase();
@@ -288,7 +216,6 @@ export const plantillas: Plantilla[] = [
       { sku: "BIM-PL-500", planchas: 20 },
       { sku: "BIM-PI-600", planchas: 20 },
       { sku: "BIM-MN-240", planchas: 12 },
-      { sku: "BIM-TM-400", planchas: 12 },
     ],
   },
   {
@@ -297,9 +224,7 @@ export const plantillas: Plantilla[] = [
     descripcion: "Parrilla, sándwich e impulso para viernes a domingo.",
     lineas: [
       { sku: "BIM-BD-300", planchas: 16 },
-      { sku: "BIM-PH-550", planchas: 16 },
       { sku: "BIM-DN-250", planchas: 10 },
-      { sku: "BIM-QQ-320", planchas: 8 },
     ],
   },
   {
@@ -321,7 +246,6 @@ export const ultimoPedido = {
     { sku: "BIM-PB-680", planchas: 45 },
     { sku: "BIM-PL-500", planchas: 24 },
     { sku: "BIM-MN-240", planchas: 12 },
-    { sku: "BIM-TB-450", planchas: 12 },
     { sku: "BIM-DN-250", planchas: 8 },
   ],
 };
