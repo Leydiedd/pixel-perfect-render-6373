@@ -68,7 +68,7 @@ function Catalogo() {
             <Input
               value={consulta}
               onChange={(e) => setConsulta(e.target.value)}
-              placeholder="Buscar por nombre o código SKU (ej. BIM-PB-680)"
+               placeholder="Buscar por nombre o SKU"
               aria-label="Buscar productos por nombre o SKU"
               className="h-12 pl-10"
             />

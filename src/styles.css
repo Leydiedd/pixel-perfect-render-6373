@@ -174,5 +174,5 @@
   background-repeat: repeat;
 }
 
-:root { --texture-overlay: oklch(0.985 0.004 250 / 88%); }
-.dark { --texture-overlay: oklch(0.18 0.04 264 / 90%); }
+:root { --texture-overlay: oklch(0.985 0.004 250 / 94%); }
+.dark { --texture-overlay: oklch(0.18 0.04 264 / 94%); }
