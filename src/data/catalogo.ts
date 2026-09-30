@@ -225,7 +225,6 @@ export const plantillas: Plantilla[] = [
     lineas: [
       { sku: "BIM-BD-300", planchas: 16 },
       { sku: "BIM-DN-250", planchas: 10 },
-      { sku: "BIM-QQ-320", planchas: 8 },
     ],
   },
   {
@@ -247,7 +246,6 @@ export const ultimoPedido = {
     { sku: "BIM-PB-680", planchas: 45 },
     { sku: "BIM-PL-500", planchas: 24 },
     { sku: "BIM-MN-240", planchas: 12 },
-    { sku: "BIM-TB-450", planchas: 12 },
     { sku: "BIM-DN-250", planchas: 8 },
   ],
 };
