@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { AlertTriangle, ScanBarcode, Search } from "lucide-react";
+import { AlertTriangle, Search } from "lucide-react";
 import { toast } from "sonner";
 import {
   familias,
@@ -59,10 +59,6 @@ function Catalogo() {
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-foreground">
             Catálogo mayorista por SKU
           </h1>
-          <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
-            Precios por volumen en planchas y paletas, stock de planta en línea y control de lotes
-            por fecha de caducidad. Sin mínimos ocultos ni sorpresas al confirmar.
-          </p>
         </div>
         <div className="flex flex-col gap-3">
           <div className="relative">
@@ -75,26 +71,19 @@ function Catalogo() {
               className="h-12 pl-10"
             />
           </div>
-          <p className="flex items-center gap-2 text-xs text-muted-foreground">
-            <ScanBarcode className="size-4" aria-hidden />
-            Compatible con lector de código de barras: enfoca el buscador y escanea.
-          </p>
         </div>
       </section>
 
       <div className="mb-8 flex flex-wrap gap-2">
         {(["Todas", ...familias] as const).map((f) => (
-          <button
+           <Button
             key={f}
             onClick={() => setFamilia(f)}
-            className={
-              f === familia
-                ? "rounded-full bg-navy px-4 py-2 text-sm font-medium text-navy-foreground"
-                : "rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            }
+             variant={f === familia ? "default" : "outline"}
+             className="rounded-sm"
           >
             {f}
-          </button>
+           </Button>
         ))}
       </div>
 
@@ -127,7 +116,8 @@ function TarjetaProducto({
   onAgregar: (sku: string, planchas: number) => void;
   alertas: (sku: string, planchas: number) => string[];
 }) {
-  const producto = productos.find((p) => p.sku === sku)!;
+   const producto = productos.find((p) => p.sku === sku);
+   if (!producto) return null;
   const [planchas, setPlanchas] = useState(producto.minimoPlanchas);
   const avisos = alertas(producto.sku, planchas);
   const precio = precioPorVolumen(producto, planchas);

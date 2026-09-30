@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { EncabezadoApp } from "@/components/EncabezadoApp";
 import { ProveedorPedido } from "@/context/pedido";
 import { Toaster } from "@/components/ui/sonner";
+import { Button } from "@/components/ui/button";
 
 function NotFoundComponent() {
   return (
@@ -25,12 +26,7 @@ function NotFoundComponent() {
           La página que buscas no existe o fue movida.
         </p>
         <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Ir al catálogo
-          </Link>
+          <Button asChild><Link to="/">Ir al catálogo</Link></Button>
         </div>
       </div>
     </div>
@@ -54,15 +50,14 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           Ocurrió un problema. Puedes reintentar o volver al catálogo.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
-          <button
+          <Button
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Reintentar
-          </button>
+          </Button>
           <a
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
@@ -96,7 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+       { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
   }),
   shellComponent: RootShell,
@@ -125,15 +120,14 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <ProveedorPedido>
-        <div className="flex min-h-screen flex-col bg-surface">
+        <div className="app-shell flex min-h-screen flex-col">
           <EncabezadoApp />
-          <main className="flex-1">
-            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <main className="relative flex-1">
             <Outlet />
           </main>
           <footer className="border-t border-border bg-background">
             <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-6 py-6 text-xs text-muted-foreground">
-              <span>Bimbo Mayorista · Uso exclusivo para clientes con cuenta corporativa.</span>
+              <span>Pan del Osito · Bimbo Mayorista</span>
               <span>Precios sin IGV. Entrega sujeta a disponibilidad de planta.</span>
             </div>
           </footer>

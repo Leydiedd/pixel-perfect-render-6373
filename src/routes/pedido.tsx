@@ -59,10 +59,6 @@ function PedidoEnCurso() {
   return (
     <div className="mx-auto max-w-7xl px-6 py-10">
       <h1 className="text-3xl font-semibold tracking-tight text-foreground">Pedido en curso</h1>
-      <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-        Edita las cantidades directamente en la tabla. Cada línea se expresa en planchas y muestra
-        su equivalencia en paletas.
-      </p>
 
       {lineas.length === 0 ? (
         <div className="mt-10 rounded-xl border border-dashed border-border bg-background p-12 text-center">
@@ -218,9 +214,6 @@ function PedidoEnCurso() {
             >
               Confirmar pedido
             </Button>
-            <p className="text-center text-xs text-muted-foreground">
-              Se genera orden de compra con lote y fecha de caducidad al despachar.
-            </p>
           </aside>
         </div>
       )}
