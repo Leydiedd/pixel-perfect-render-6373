@@ -27,6 +27,8 @@ export const Route = createFileRoute("/soporte")({
         property: "og:description",
         content: "Centro de ayuda para clientes mayoristas: documentos, contacto y preguntas frecuentes.",
       },
+       { property: "og:type", content: "website" },
+       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Soporte,
@@ -39,7 +41,7 @@ const estadoClase: Record<string, string> = {
 };
 
 function Soporte() {
-  const [mensajes, setMensajes] = useState([
+   const [mensajes, setMensajes] = useState<{ de: "ejecutivo" | "cliente"; texto: string }[]>([
     {
       de: "ejecutivo" as const,
       texto: `Hola, soy ${cuenta.ejecutivo.nombre}. ¿En qué puedo ayudarte con tu abastecimiento?`,
@@ -68,10 +70,6 @@ function Soporte() {
       <h1 className="text-3xl font-semibold tracking-tight text-foreground">
         Soporte y facturación
       </h1>
-      <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-        Documentos de la cuenta {cuenta.cliente}, contacto directo con tu ejecutivo y respuestas a
-        las consultas más frecuentes del canal mayorista.
-      </p>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-start">
         <div className="space-y-8">

@@ -38,7 +38,7 @@ export function ProveedorPedido({ children }: { children: ReactNode }) {
       const guardado = window.localStorage.getItem(CLAVE);
       if (guardado) setLineas(JSON.parse(guardado) as LineaPedido[]);
     } catch {
-      /* almacenamiento no disponible */
+
     }
     hidratado.current = true;
   }, []);
@@ -48,7 +48,7 @@ export function ProveedorPedido({ children }: { children: ReactNode }) {
     try {
       window.localStorage.setItem(CLAVE, JSON.stringify(lineas));
     } catch {
-      /* almacenamiento no disponible */
+
     }
   }, [lineas]);
 

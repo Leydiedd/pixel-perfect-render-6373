@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { AlertTriangle, CheckCircle2, History, Keyboard, ScanBarcode } from "lucide-react";
+import { AlertTriangle, CheckCircle2, History, Keyboard } from "lucide-react";
 import { toast } from "sonner";
 import {
   buscarProducto,
@@ -29,6 +29,8 @@ export const Route = createFileRoute("/pedido-rapido")({
         property: "og:description",
         content: "Captura masiva por SKU, lector de código de barras y plantillas recurrentes.",
       },
+       { property: "og:type", content: "website" },
+       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: PedidoRapido,
@@ -75,10 +77,6 @@ function PedidoRapido() {
       <h1 className="text-3xl font-semibold tracking-tight text-foreground">
         Pedido rápido y plantillas
       </h1>
-      <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-        Captura masiva sin usar el ratón: escribe o pega una línea por producto con el formato
-        «SKU, planchas». También puedes escanear el código de barras dentro del área de texto.
-      </p>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-start">
         <Card className="p-6">
@@ -95,10 +93,6 @@ function PedidoRapido() {
             className="mt-4 font-mono text-sm"
             aria-label="Listado de SKU y planchas"
           />
-          <p className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
-            <ScanBarcode className="size-4" aria-hidden />
-            El lector de código de barras escribe el SKU y salta a la siguiente línea.
-          </p>
 
           <div className="mt-4 flex flex-wrap gap-3">
             <Button onClick={() => setResultados(analizar(texto))} disabled={!texto.trim()}>
@@ -130,7 +124,8 @@ function PedidoRapido() {
           {resultados && (
             <div className="mt-6 space-y-2">
               {validos.map((r) => {
-                const producto = buscarProducto(r.sku)!;
+                 const producto = buscarProducto(r.sku);
+                 if (!producto) return null;
                 return (
                   <p
                     key={r.sku}

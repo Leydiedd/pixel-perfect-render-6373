@@ -18,7 +18,15 @@ export const Route = createFileRoute("/producto/$sku")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Producto no disponible — Bimbo Mayorista" }, { name: "robots", content: "noindex" }],
+         meta: [
+           { title: "Producto no disponible — Bimbo Mayorista" },
+           { name: "description", content: "Producto no disponible en el catálogo mayorista de Bimbo." },
+           { property: "og:title", content: "Producto no disponible — Bimbo Mayorista" },
+           { property: "og:description", content: "Producto no disponible en el catálogo mayorista de Bimbo." },
+           { property: "og:type", content: "product" },
+           { name: "twitter:card", content: "summary_large_image" },
+           { name: "robots", content: "noindex" },
+         ],
       };
     }
     const { producto } = loaderData;
@@ -29,6 +37,8 @@ export const Route = createFileRoute("/producto/$sku")({
         { name: "description", content: producto.descripcion },
         { property: "og:title", content: titulo },
         { property: "og:description", content: producto.descripcion },
+         { property: "og:type", content: "product" },
+         { name: "twitter:card", content: "summary_large_image" },
         { property: "og:image", content: producto.imagenes[0] },
         { name: "twitter:image", content: producto.imagenes[0] },
       ],
@@ -61,7 +71,7 @@ function FichaProducto() {
         <div className="space-y-4">
           <div className="aspect-[4/3] overflow-hidden rounded-xl border border-border bg-muted">
             <ProductoImagen
-              src={producto.imagenes[principal]}
+               src={producto.imagenes[principal] ?? ""}
               alt={producto.nombre}
               className="size-full"
             />

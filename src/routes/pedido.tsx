@@ -27,6 +27,8 @@ export const Route = createFileRoute("/pedido")({
         property: "og:description",
         content: "Resumen editable del pedido mayorista con control de crédito y entrega.",
       },
+       { property: "og:type", content: "website" },
+       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: PedidoEnCurso,
@@ -59,10 +61,6 @@ function PedidoEnCurso() {
   return (
     <div className="mx-auto max-w-7xl px-6 py-10">
       <h1 className="text-3xl font-semibold tracking-tight text-foreground">Pedido en curso</h1>
-      <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-        Edita las cantidades directamente en la tabla. Cada línea se expresa en planchas y muestra
-        su equivalencia en paletas.
-      </p>
 
       {lineas.length === 0 ? (
         <div className="mt-10 rounded-xl border border-dashed border-border bg-background p-12 text-center">
@@ -101,7 +99,7 @@ function PedidoEnCurso() {
                       <td className="px-5 py-4">
                         <div className="flex gap-3">
                           <ProductoImagen
-                            src={producto.imagenes[0]}
+                             src={producto.imagenes[0] ?? ""}
                             alt={producto.nombre}
                             className="size-14 shrink-0 rounded-md"
                           />
@@ -218,9 +216,6 @@ function PedidoEnCurso() {
             >
               Confirmar pedido
             </Button>
-            <p className="text-center text-xs text-muted-foreground">
-              Se genera orden de compra con lote y fecha de caducidad al despachar.
-            </p>
           </aside>
         </div>
       )}

@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { CreditCard, FileText, PackageCheck, Truck, Boxes, Keyboard, LifeBuoy, ClipboardList } from "lucide-react";
 import { cuenta, formatoMoneda, ordenesActivas } from "@/data/catalogo";
 import { usePedido } from "@/context/pedido";
+import logo from "@/assets/logo-bimbo.jpg.asset.json";
 
 const enlaces = [
   { to: "/", etiqueta: "Catálogo", icono: Boxes, exacto: true },
@@ -48,15 +49,10 @@ export function EncabezadoApp() {
         </div>
       </div>
 
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-4">
-        <Link to="/" className="flex items-center gap-3">
-          <span className="grid size-9 place-items-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
-            B
-          </span>
-          <span className="leading-tight">
-            <span className="block text-base font-semibold tracking-tight text-foreground">Bimbo Mayorista</span>
-            <span className="block text-xs text-muted-foreground">Portal de abastecimiento B2B</span>
-          </span>
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-3">
+        <Link to="/" className="flex items-center gap-3" aria-label="Pan del Osito — catálogo">
+          <img src={logo.url} alt="Bimbo" className="h-14 w-16 shrink-0 bg-background object-contain sm:h-16 sm:w-20" />
+          <span className="text-lg font-bold text-primary sm:text-xl">Pan del Osito</span>
         </Link>
 
         <nav className="flex flex-wrap items-center gap-1">
