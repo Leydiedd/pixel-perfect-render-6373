@@ -125,7 +125,7 @@ function TarjetaProducto({
   const precio = precioPorVolumen(producto, planchas);
 
   return (
-    <Card className="flex flex-col overflow-hidden border-border p-0 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[0_18px_36px_-16px_oklch(0.29_0.075_262/0.28)]">
+    <Card className="flex flex-col overflow-hidden border-border p-0 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-card-hover">
       <Link
         to="/producto/$sku"
         params={{ sku: producto.sku }}

@@ -4,6 +4,7 @@
 
 @theme {
   --texture-panes: url("/__l5e/assets-v1/221807d9-2b1f-438b-bdc7-b8bc0c66ac59/textura-panes.jpg");
+  --shadow-card-hover: 0 18px 36px -16px oklch(0.29 0.075 262 / 0.28);
 }
 
 @custom-variant dark (&:is(.dark *));
