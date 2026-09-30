@@ -29,6 +29,8 @@ export const Route = createFileRoute("/pedido-rapido")({
         property: "og:description",
         content: "Captura masiva por SKU, lector de código de barras y plantillas recurrentes.",
       },
+       { property: "og:type", content: "website" },
+       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: PedidoRapido,

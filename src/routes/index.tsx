@@ -29,6 +29,8 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Busca por SKU, revisa precios por volumen y arma tu pedido al por mayor.",
       },
+       { property: "og:type", content: "website" },
+       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Catalogo,

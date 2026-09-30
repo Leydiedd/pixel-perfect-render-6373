@@ -27,6 +27,8 @@ export const Route = createFileRoute("/soporte")({
         property: "og:description",
         content: "Centro de ayuda para clientes mayoristas: documentos, contacto y preguntas frecuentes.",
       },
+       { property: "og:type", content: "website" },
+       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Soporte,

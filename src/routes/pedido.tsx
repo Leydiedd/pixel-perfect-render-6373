@@ -27,6 +27,8 @@ export const Route = createFileRoute("/pedido")({
         property: "og:description",
         content: "Resumen editable del pedido mayorista con control de crédito y entrega.",
       },
+       { property: "og:type", content: "website" },
+       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: PedidoEnCurso,
