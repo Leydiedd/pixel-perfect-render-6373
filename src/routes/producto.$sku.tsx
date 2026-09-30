@@ -61,7 +61,7 @@ function FichaProducto() {
         <div className="space-y-4">
           <div className="aspect-[4/3] overflow-hidden rounded-xl border border-border bg-muted">
             <ProductoImagen
-              src={producto.imagenes[principal]}
+               src={producto.imagenes[principal] ?? ""}
               alt={producto.nombre}
               className="size-full"
             />

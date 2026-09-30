@@ -130,7 +130,7 @@ function TarjetaProducto({
         className="block aspect-[4/3] overflow-hidden bg-muted"
       >
         <ProductoImagen
-          src={producto.imagenes[0]}
+           src={producto.imagenes[0] ?? ""}
           alt={producto.nombre}
           className="size-full transition-transform duration-300 hover:scale-105"
         />

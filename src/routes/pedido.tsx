@@ -97,7 +97,7 @@ function PedidoEnCurso() {
                       <td className="px-5 py-4">
                         <div className="flex gap-3">
                           <ProductoImagen
-                            src={producto.imagenes[0]}
+                             src={producto.imagenes[0] ?? ""}
                             alt={producto.nombre}
                             className="size-14 shrink-0 rounded-md"
                           />

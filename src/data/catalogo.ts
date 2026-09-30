@@ -268,7 +268,7 @@ export function precioPorVolumen(producto: Producto, planchas: number) {
     .sort((a, b) => a.desdePlanchas - b.desdePlanchas)
     .filter((e) => planchas >= e.desdePlanchas)
     .pop();
-  return escala?.precio ?? producto.precios[0].precio;
+  return escala?.precio ?? producto.precios[0]?.precio ?? 0;
 }
 
 export type Plantilla = {
