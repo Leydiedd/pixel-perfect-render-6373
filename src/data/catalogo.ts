@@ -229,7 +229,7 @@ const nombresOficiales: Record<string, string> = {
 
 export const productos: Producto[] = todosLosProductos
   .filter((p) => p.sku in nombresOficiales)
-  .map((p) => ({ ...p, nombre: nombresOficiales[p.sku] }));
+  .map((p) => ({ ...p, nombre: nombresOficiales[p.sku] ?? p.nombre }));
 
 export const familias: Familia[] = ["Pan de molde", "Bollería", "Integrales"];
 

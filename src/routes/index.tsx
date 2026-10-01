@@ -124,7 +124,7 @@ function Panel() {
           {productos.map((p) => (
             <Link key={p.sku} to="/producto/$sku" params={{ sku: p.sku }} className="group overflow-hidden rounded-lg border border-border bg-card transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-card-hover">
               <div className="aspect-[4/3] overflow-hidden bg-background">
-                <ProductoImagen src={p.imagenes[0]} alt={p.nombre} className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105" />
+                <ProductoImagen src={p.imagenes[0] ?? ""} alt={p.nombre} className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105" />
               </div>
               <div className="space-y-1 p-3">
                 <p className="text-xs text-muted-foreground">{p.sku}</p>
