@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/inventario")({
   head: () => ({
     meta: [
       { title: "Catálogo mayorista — Bimbo Mayorista" },

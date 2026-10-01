@@ -28,7 +28,7 @@ export type Producto = {
 const img = (id: string) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=900&q=80`;
 
-export const productos: Producto[] = [
+const todosLosProductos: Producto[] = [
   {
     sku: "BIM-PB-680",
     nombre: "Pan Blanco Grande 680 g",
@@ -219,6 +219,17 @@ export const productos: Producto[] = [
     imagenes: [img("photo-1534620808146-d33bb39128b2"), img("photo-1581929955747-1e0a8e05d2b7")],
   },
 ];
+
+const nombresOficiales: Record<string, string> = {
+  "BIM-PI-600": "Pan Pita Integral Bimbo 300 g",
+  "BIM-PC-380": "Pan de Molde Bimbo Artesano Integral 560 g",
+  "BIM-BD-300": "Pan para Hamburguesa Bimbo 8 unidades",
+  "BIM-NT-015": "Chocolate Nito Bimbo 15 unidades",
+};
+
+export const productos: Producto[] = todosLosProductos
+  .filter((p) => p.sku in nombresOficiales)
+  .map((p) => ({ ...p, nombre: nombresOficiales[p.sku] }));
 
 export const familias: Familia[] = ["Pan de molde", "Bollería", "Integrales"];
 
