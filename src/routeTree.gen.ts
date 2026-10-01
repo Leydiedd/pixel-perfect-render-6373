@@ -9,15 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as InventarioRouteImport } from './routes/inventario'
 import { Route as PedidoRouteImport } from './routes/pedido'
 import { Route as PedidoRapidoRouteImport } from './routes/pedido-rapido'
 import { Route as SoporteRouteImport } from './routes/soporte'
 import { Route as ProductoSkuRouteImport } from './routes/producto.$sku'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const InventarioRoute = InventarioRouteImport.update({
+  id: '/inventario',
+  path: '/inventario',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PedidoRoute = PedidoRouteImport.update({
@@ -42,14 +42,14 @@ const ProductoSkuRoute = ProductoSkuRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/inventario': typeof InventarioRoute
   '/pedido': typeof PedidoRoute
   '/pedido-rapido': typeof PedidoRapidoRoute
   '/soporte': typeof SoporteRoute
   '/producto/$sku': typeof ProductoSkuRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/inventario': typeof InventarioRoute
   '/pedido': typeof PedidoRoute
   '/pedido-rapido': typeof PedidoRapidoRoute
   '/soporte': typeof SoporteRoute
@@ -57,7 +57,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/inventario': typeof InventarioRoute
   '/pedido': typeof PedidoRoute
   '/pedido-rapido': typeof PedidoRapidoRoute
   '/soporte': typeof SoporteRoute
@@ -65,12 +65,14 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/pedido' | '/pedido-rapido' | '/soporte' | '/producto/$sku'
+  fullPaths:
+    '/inventario' | '/pedido' | '/pedido-rapido' | '/soporte' | '/producto/$sku'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/pedido' | '/pedido-rapido' | '/soporte' | '/producto/$sku'
+  to:
+    '/inventario' | '/pedido' | '/pedido-rapido' | '/soporte' | '/producto/$sku'
   id:
     | '__root__'
-    | '/'
+    | '/inventario'
     | '/pedido'
     | '/pedido-rapido'
     | '/soporte'
@@ -78,7 +80,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  InventarioRoute: typeof InventarioRoute
   PedidoRoute: typeof PedidoRoute
   PedidoRapidoRoute: typeof PedidoRapidoRoute
   SoporteRoute: typeof SoporteRoute
@@ -87,11 +89,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/inventario': {
+      id: '/inventario'
+      path: '/inventario'
+      fullPath: '/inventario'
+      preLoaderRoute: typeof InventarioRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pedido': {
@@ -126,7 +128,7 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  InventarioRoute: InventarioRoute,
   PedidoRoute: PedidoRoute,
   PedidoRapidoRoute: PedidoRapidoRoute,
   SoporteRoute: SoporteRoute,

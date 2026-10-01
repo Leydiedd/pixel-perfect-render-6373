@@ -12,6 +12,7 @@ import { lazy, useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { EncabezadoApp } from "@/components/EncabezadoApp";
+import { BarraLateral } from "@/components/BarraLateral";
 import { ProveedorPedido } from "@/context/pedido";
 import { Toaster } from "@/components/ui/sonner";
 import { Button } from "@/components/ui/button";
@@ -26,7 +27,7 @@ function NotFoundComponent() {
           La página que buscas no existe o fue movida.
         </p>
         <div className="mt-6">
-          <Button asChild><Link to="/">Ir al catálogo</Link></Button>
+          <Button asChild><Link to="/">Ir al panel</Link></Button>
         </div>
       </div>
     </div>
@@ -47,7 +48,7 @@ function ErrorComponent({ error, reset }: { error: unknown; reset: () => void })
           Esta página no cargó
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Ocurrió un problema. Puedes reintentar o volver al catálogo.
+          Ocurrió un problema. Puedes reintentar o volver al panel.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <Button
@@ -62,7 +63,7 @@ function ErrorComponent({ error, reset }: { error: unknown; reset: () => void })
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
-            Ir al catálogo
+            Ir al panel
           </a>
         </div>
       </div>
@@ -77,13 +78,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Bimbo Mayorista — Portal B2B" },
+      { title: "Bimbo Osito — Dashboard de Suministro" },
       {
         name: "description",
         content:
           "Portal mayorista de Bimbo para gerentes de compras de supermercados y minimarkets.",
       },
-      { property: "og:title", content: "Bimbo Mayorista — Portal B2B" },
+      { property: "og:title", content: "Bimbo Osito — Dashboard de Suministro" },
       {
         property: "og:description",
         content: "Catálogo por SKU, pedido rápido y soporte para compras al por mayor.",
@@ -124,12 +125,15 @@ function RootComponent() {
       <ProveedorPedido>
         <div className="app-shell flex min-h-screen flex-col">
           <EncabezadoApp />
-          <main className="relative flex-1">
-            <Outlet />
-          </main>
+          <div className="flex flex-1">
+            <BarraLateral />
+            <main className="relative min-w-0 flex-1">
+              <Outlet />
+            </main>
+          </div>
           <footer className="border-t border-border bg-background">
             <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-6 py-6 text-xs text-muted-foreground">
-              <span>Pan del Osito · Bimbo Mayorista</span>
+              <span>Bimbo Osito · Cadena de Suministro</span>
               <span>Precios sin IGV. Entrega sujeta a disponibilidad de planta.</span>
             </div>
           </footer>
