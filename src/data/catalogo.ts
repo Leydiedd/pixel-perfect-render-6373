@@ -69,7 +69,10 @@ export const productos: Producto[] = [
       { lote: "L-2411C", caducidad: "2026-10-09", planchas: 90 },
       { lote: "L-2411D", caducidad: "2026-10-20", planchas: 120 },
     ],
-    imagenes: [img("photo-1586444248902-2f64eddc13df"), img("photo-1598373182133-52452f7691ef")],
+    imagenes: [
+      "/__l5e/assets-v1/0cd15cc2-9714-4bfa-b098-b31b23071199/pan-pita-integral-bimbo-300g.jpg",
+      img("photo-1598373182133-52452f7691ef"),
+    ],
   },
   {
     sku: "BIM-MN-240",
@@ -129,7 +132,10 @@ export const productos: Producto[] = [
       { desdePlanchas: 32, precio: 20.4 },
     ],
     lotes: [{ lote: "L-2431H", caducidad: "2026-10-06", planchas: 74 }],
-    imagenes: [img("photo-1568254183919-78a4f43a2877"), img("photo-1571091718767-18b5b1457add")],
+    imagenes: [
+      "/__l5e/assets-v1/eb5bdfa0-9537-47d6-936c-406844c6887e/pan-hamburguesa-bimbo-8unid.jpg",
+      img("photo-1571091718767-18b5b1457add"),
+    ],
   },
   {
     sku: "BIM-PC-380",
@@ -147,7 +153,10 @@ export const productos: Producto[] = [
       { desdePlanchas: 30, precio: 37.9 },
     ],
     lotes: [{ lote: "L-2444R", caducidad: "2026-10-05", planchas: 48 }],
-    imagenes: [img("photo-1589367920969-ab8e050bbb04"), img("photo-1595535873420-a599195b3f4a")],
+    imagenes: [
+      "/__l5e/assets-v1/194bbbf1-f09b-4e04-a034-0bba9718d937/pan-artesano-integral-bimbo-560g.webp",
+      img("photo-1595535873420-a599195b3f4a"),
+    ],
   },
   {
     sku: "BIM-DN-250",
