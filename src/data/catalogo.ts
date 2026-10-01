@@ -177,6 +177,30 @@ export const productos: Producto[] = [
     imagenes: [img("photo-1551024601-bec78aea704b"), img("photo-1533134242443-d4fd215305ad")],
   },
   {
+    sku: "BIM-NT-015",
+    nombre: "Chocolate Nito 15 unidades",
+    familia: "Bollería",
+    descripcion:
+      "Empaque individual de Nito, pan con cobertura de chocolate. Producto de impulso para caja, kioscos y refrigerios escolares.",
+    unidadesPorPlancha: 12,
+    planchasPorPaleta: 36,
+    minimoPlanchas: 4,
+    stockPlanchas: 186,
+    precios: [
+      { desdePlanchas: 1, precio: 34.9 },
+      { desdePlanchas: 18, precio: 33.2 },
+      { desdePlanchas: 36, precio: 31.5 },
+    ],
+    lotes: [
+      { lote: "L-2462N", caducidad: "2026-11-08", planchas: 120 },
+      { lote: "L-2462P", caducidad: "2026-11-22", planchas: 66 },
+    ],
+    imagenes: [
+      "/__l5e/assets-v1/ba5e8d79-72a9-423d-a646-f80b9fb7fed3/bimbo-nito-2.19oz-15pack.jpg",
+      img("photo-1549007994-cb92caebd54b"),
+    ],
+  },
+  {
     sku: "BIM-PD-700",
     nombre: "Pan Doble Fibra 700 g",
     familia: "Integrales",
