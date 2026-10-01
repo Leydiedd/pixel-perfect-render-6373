@@ -10,6 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AlertasRouteImport } from './routes/alertas'
+import { Route as EstatusRouteImport } from './routes/estatus'
+import { Route as InventarioRouteImport } from './routes/inventario'
+import { Route as LogisticaRouteImport } from './routes/logistica'
 import { Route as PedidoRouteImport } from './routes/pedido'
 import { Route as PedidoRapidoRouteImport } from './routes/pedido-rapido'
 import { Route as SoporteRouteImport } from './routes/soporte'
@@ -18,6 +22,26 @@ import { Route as ProductoSkuRouteImport } from './routes/producto.$sku'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlertasRoute = AlertasRouteImport.update({
+  id: '/alertas',
+  path: '/alertas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EstatusRoute = EstatusRouteImport.update({
+  id: '/estatus',
+  path: '/estatus',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InventarioRoute = InventarioRouteImport.update({
+  id: '/inventario',
+  path: '/inventario',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LogisticaRoute = LogisticaRouteImport.update({
+  id: '/logistica',
+  path: '/logistica',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PedidoRoute = PedidoRouteImport.update({
@@ -43,6 +67,10 @@ const ProductoSkuRoute = ProductoSkuRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/alertas': typeof AlertasRoute
+  '/estatus': typeof EstatusRoute
+  '/inventario': typeof InventarioRoute
+  '/logistica': typeof LogisticaRoute
   '/pedido': typeof PedidoRoute
   '/pedido-rapido': typeof PedidoRapidoRoute
   '/soporte': typeof SoporteRoute
@@ -50,6 +78,10 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/alertas': typeof AlertasRoute
+  '/estatus': typeof EstatusRoute
+  '/inventario': typeof InventarioRoute
+  '/logistica': typeof LogisticaRoute
   '/pedido': typeof PedidoRoute
   '/pedido-rapido': typeof PedidoRapidoRoute
   '/soporte': typeof SoporteRoute
@@ -58,6 +90,10 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/alertas': typeof AlertasRoute
+  '/estatus': typeof EstatusRoute
+  '/inventario': typeof InventarioRoute
+  '/logistica': typeof LogisticaRoute
   '/pedido': typeof PedidoRoute
   '/pedido-rapido': typeof PedidoRapidoRoute
   '/soporte': typeof SoporteRoute
@@ -65,12 +101,34 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/pedido' | '/pedido-rapido' | '/soporte' | '/producto/$sku'
+  fullPaths:
+    | '/'
+    | '/alertas'
+    | '/estatus'
+    | '/inventario'
+    | '/logistica'
+    | '/pedido'
+    | '/pedido-rapido'
+    | '/soporte'
+    | '/producto/$sku'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/pedido' | '/pedido-rapido' | '/soporte' | '/producto/$sku'
+  to:
+    | '/'
+    | '/alertas'
+    | '/estatus'
+    | '/inventario'
+    | '/logistica'
+    | '/pedido'
+    | '/pedido-rapido'
+    | '/soporte'
+    | '/producto/$sku'
   id:
     | '__root__'
     | '/'
+    | '/alertas'
+    | '/estatus'
+    | '/inventario'
+    | '/logistica'
     | '/pedido'
     | '/pedido-rapido'
     | '/soporte'
@@ -79,6 +137,10 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AlertasRoute: typeof AlertasRoute
+  EstatusRoute: typeof EstatusRoute
+  InventarioRoute: typeof InventarioRoute
+  LogisticaRoute: typeof LogisticaRoute
   PedidoRoute: typeof PedidoRoute
   PedidoRapidoRoute: typeof PedidoRapidoRoute
   SoporteRoute: typeof SoporteRoute
@@ -92,6 +154,34 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/alertas': {
+      id: '/alertas'
+      path: '/alertas'
+      fullPath: '/alertas'
+      preLoaderRoute: typeof AlertasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/estatus': {
+      id: '/estatus'
+      path: '/estatus'
+      fullPath: '/estatus'
+      preLoaderRoute: typeof EstatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inventario': {
+      id: '/inventario'
+      path: '/inventario'
+      fullPath: '/inventario'
+      preLoaderRoute: typeof InventarioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/logistica': {
+      id: '/logistica'
+      path: '/logistica'
+      fullPath: '/logistica'
+      preLoaderRoute: typeof LogisticaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pedido': {
@@ -127,6 +217,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AlertasRoute: AlertasRoute,
+  EstatusRoute: EstatusRoute,
+  InventarioRoute: InventarioRoute,
+  LogisticaRoute: LogisticaRoute,
   PedidoRoute: PedidoRoute,
   PedidoRapidoRoute: PedidoRapidoRoute,
   SoporteRoute: SoporteRoute,
