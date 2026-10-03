@@ -15,6 +15,7 @@ import { EncabezadoApp } from "@/components/EncabezadoApp";
 import { BarraLateral } from "@/components/BarraLateral";
 import { ProveedorPedido } from "@/context/pedido";
 import { Toaster } from "@/components/ui/sonner";
+import { WidgetWhatsApp } from "@/components/WidgetWhatsApp";
 import { Button } from "@/components/ui/button";
 
 function NotFoundComponent() {
@@ -139,6 +140,7 @@ function RootComponent() {
           </footer>
         </div>
         <Toaster position="bottom-right" />
+        <WidgetWhatsApp />
       </ProveedorPedido>
     </QueryClientProvider>
   );
