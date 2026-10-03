@@ -216,9 +216,9 @@ function PedidoEnCurso() {
             )}
 
             <Button
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+              className="w-full bg-purple-600 hover:bg-purple-700 text-white cursor-pointer"
               size="lg"
-              disabled={hayBloqueos || excedeCredito}
+              disabled={false}
               onClick={() => setMostrarYape(true)}
             >
               Pagar con Yape y Confirmar
