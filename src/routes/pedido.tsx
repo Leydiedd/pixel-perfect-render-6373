@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { AlertTriangle, Trash2, Truck } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -12,6 +13,7 @@ import { usePedido } from "@/context/pedido";
 import { ProductoImagen } from "@/components/ProductoImagen";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { SimuladorYapeModal } from "@/components/SimuladorYapeModal";
 
 export const Route = createFileRoute("/pedido")({
   head: () => ({
@@ -40,6 +42,9 @@ function PedidoEnCurso() {
   const { lineas, fijar, quitar, restaurar, totalPlanchas, totalImporte, creditoDisponible, alertas, vaciar } =
     usePedido();
 
+  const [mostrarYape, setMostrarYape] = useState(false);
+  const ordenIdActual = `ORD-${Date.now().toString().slice(-6)}`;
+
   const hayBloqueos = lineas.some((l) => alertas(l.sku, l.planchas).length > 0);
   const excedeCredito = creditoDisponible < 0;
 
@@ -56,6 +61,13 @@ function PedidoEnCurso() {
       },
       duration: 10000,
     });
+  };
+
+  const handlePagoExitoso = (id: string, nroOp: string) => {
+    toast.success("¡Pago con Yape validado y pedido enviado a planta!", {
+      description: `Orden: #${id.slice(-6)} · Nro. Operación: ${nroOp} · ${formatoMoneda(totalImporte)}`,
+    });
+    vaciar();
   };
 
   return (
@@ -204,20 +216,24 @@ function PedidoEnCurso() {
             )}
 
             <Button
-              className="w-full"
+              className="w-full bg-purple-600 hover:bg-purple-700 text-white"
               size="lg"
               disabled={hayBloqueos || excedeCredito}
-              onClick={() => {
-                toast.success("Pedido enviado a planta", {
-                  description: `${lineas.length} líneas · ${formatoMoneda(totalImporte)}`,
-                });
-                vaciar();
-              }}
+              onClick={() => setMostrarYape(true)}
             >
-              Confirmar pedido
+              Pagar con Yape y Confirmar
             </Button>
           </aside>
         </div>
+      )}
+
+      {mostrarYape && (
+        <SimuladorYapeModal
+          monto={totalImporte}
+          ordenId={ordenIdActual}
+          onClose={() => setMostrarYape(false)}
+          onPagoExitoso={handlePagoExitoso}
+        />
       )}
     </div>
   );
