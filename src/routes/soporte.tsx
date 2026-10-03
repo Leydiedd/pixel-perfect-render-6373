@@ -2,7 +2,15 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Download, Mail, MessageCircle, Phone, Send } from "lucide-react";
 import { toast } from "sonner";
-import { cuenta, documentos, formatoFecha, formatoMoneda, preguntas } from "@/data/catalogo";
+import {
+  cuenta,
+  documentos,
+  formatoFecha,
+  formatoMoneda,
+  ordenesActivas,
+  preguntas,
+  productos,
+} from "@/data/catalogo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
@@ -40,6 +48,65 @@ const estadoClase: Record<string, string> = {
   Aplicada: "bg-navy-soft text-foreground",
 };
 
+function normalizar(t: string) {
+  return t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function responder(entrada: string): string {
+  const t = normalizar(entrada);
+  const tiene = (...p: string[]) => p.some((x) => t.includes(x));
+
+  const producto = productos.find((p) =>
+    normalizar(p.nombre)
+      .split(" ")
+      .filter((w) => w.length > 3 && w !== "bimbo")
+      .some((w) => t.includes(w)),
+  );
+
+  if (tiene("hola", "buenas", "buenos")) {
+    return "¡Hola! Puedo ayudarte con precios, stock, pedido mínimo, entregas, facturas o tu línea de crédito. ¿Qué necesitas?";
+  }
+  if (producto && tiene("precio", "cuesta", "vale", "costo")) {
+    const tramos = producto.precios
+      .map((e) => `${formatoMoneda(e.precio)} desde ${e.desdePlanchas} planchas`)
+      .join(", ");
+    return `${producto.nombre}: ${tramos}.`;
+  }
+  if (producto && tiene("stock", "hay", "disponible", "queda")) {
+    return `${producto.nombre} tiene ${producto.stockPlanchas} planchas en planta (${producto.unidadesPorPlancha} unidades por plancha).`;
+  }
+  if (producto) {
+    return `${producto.nombre}: stock ${producto.stockPlanchas} planchas, mínimo ${producto.minimoPlanchas} planchas, desde ${formatoMoneda(producto.precios[0]?.precio ?? 0)} por plancha.`;
+  }
+  if (tiene("producto", "catalogo", "venden", "tienen")) {
+    return `Actualmente ofrecemos: ${productos.map((p) => p.nombre).join("; ")}.`;
+  }
+  if (tiene("minimo")) return preguntas[0]!.respuesta;
+  if (tiene("precio", "descuento", "volumen")) return preguntas[1]!.respuesta;
+  if (tiene("caduc", "lote", "vencim")) return preguntas[2]!.respuesta;
+  if (tiene("credito", "linea")) {
+    const disp = cuenta.lineaCredito - cuenta.creditoUsado;
+    return `Tu línea de crédito es ${formatoMoneda(cuenta.lineaCredito)}; tienes ${formatoMoneda(disp)} disponibles. ${preguntas[3]!.respuesta}`;
+  }
+  if (tiene("factura", "pago", "deuda", "pendiente")) {
+    const pend = documentos.filter((d) => d.estado === "Pendiente");
+    return pend.length
+      ? `Tienes ${pend.length} factura(s) pendiente(s): ${pend.map((d) => `${d.numero} por ${formatoMoneda(d.monto)}`).join(", ")}.`
+      : "No tienes facturas pendientes.";
+  }
+  if (tiene("pedido", "orden", "entrega", "llega", "envio", "despacho")) {
+    return ordenesActivas
+      .map((o) => `${o.folio}: ${o.estado}, entrega ${formatoFecha(o.entrega)}`)
+      .join(" · ");
+  }
+  if (tiene("horario", "atienden", "contacto", "telefono", "correo")) {
+    return `Atendemos ${cuenta.ejecutivo.horario}. Teléfono ${cuenta.ejecutivo.telefono}, correo ${cuenta.ejecutivo.correo}.`;
+  }
+  if (tiene("gracias")) return "¡Con gusto! Si necesitas algo más, aquí estoy.";
+  if (tiene("adios", "chau", "hasta luego")) return "¡Hasta pronto! Buen día de ventas.";
+  return "No estoy seguro de entenderte. Puedes preguntarme por precios, stock de un producto, pedido mínimo, estado de tus pedidos, facturas o crédito.";
+}
+
 function Soporte() {
    const [mensajes, setMensajes] = useState<{ de: "ejecutivo" | "cliente"; texto: string }[]>([
     {
@@ -54,15 +121,10 @@ function Soporte() {
     if (!texto) return;
     setMensajes((prev) => [...prev, { de: "cliente", texto }]);
     setBorrador("");
+    const respuesta = responder(texto);
     setTimeout(() => {
-      setMensajes((prev) => [
-        ...prev,
-        {
-          de: "ejecutivo",
-          texto: "Recibido. Reviso el detalle con planta y te confirmo hoy mismo.",
-        },
-      ]);
-    }, 900);
+      setMensajes((prev) => [...prev, { de: "ejecutivo", texto: respuesta }]);
+    }, 700);
   };
 
   return (
