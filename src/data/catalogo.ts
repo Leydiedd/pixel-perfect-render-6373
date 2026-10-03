@@ -312,10 +312,10 @@ export const cuenta = {
   lineaCredito: 45000,
   creditoUsado: 12865.2,
   ejecutivo: {
-    nombre: "Marcela Ibáñez",
-    cargo: "Ejecutiva de cuenta B2B",
-    telefono: "+51 999 214 880",
-    correo: "marcela.ibanez@bimbo-mayorista.com",
+    nombre: "Bimbo Osito",
+    cargo: "Ejecutivo de cuenta B2B",
+    telefono: "+51 974 119 421",
+    correo: "osito@gmail.com",
     horario: "Lunes a viernes, 8:00 a 18:00",
   },
 };
