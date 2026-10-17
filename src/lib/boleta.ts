@@ -1,10 +1,37 @@
 import { buscarProducto, cuenta, formatoMoneda, precioPorVolumen } from "@/data/catalogo";
 import type { LineaPedido } from "@/context/pedido";
 
+export type BoletaGuardada = {
+  ordenId: string;
+  nroOperacion: string;
+  lineas: LineaPedido[];
+  fecha: string;
+  total: number;
+};
+
+const CLAVE_BOLETAS = "bimbo-boletas-v1";
+
+export function leerBoletas(): BoletaGuardada[] {
+  try {
+    return JSON.parse(window.localStorage.getItem(CLAVE_BOLETAS) ?? "[]") as BoletaGuardada[];
+  } catch {
+    return [];
+  }
+}
+
+export function guardarBoleta(b: BoletaGuardada) {
+  try {
+    window.localStorage.setItem(CLAVE_BOLETAS, JSON.stringify([b, ...leerBoletas()]));
+  } catch {
+    return;
+  }
+}
+
 export async function generarBoleta(datos: {
   ordenId: string;
   nroOperacion: string;
   lineas: LineaPedido[];
+  fecha?: string;
 }): Promise<{ blob: Blob; nombre: string }> {
   const { jsPDF } = await import("jspdf");
   const doc = new jsPDF({ unit: "mm", format: "a4" });
@@ -23,7 +50,7 @@ export async function generarBoleta(datos: {
   doc.setFont("helvetica", "normal");
   doc.text(`N.° B001-${datos.ordenId.slice(-6)}`, ancho - m, 19, { align: "right" });
 
-  const fecha = new Date();
+  const fecha = datos.fecha ? new Date(datos.fecha) : new Date();
   doc.setTextColor(30, 30, 30);
   doc.setFontSize(10);
   let y = 40;
