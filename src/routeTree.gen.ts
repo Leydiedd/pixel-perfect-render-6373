@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AlertasRouteImport } from './routes/alertas'
+import { Route as BoletasRouteImport } from './routes/boletas'
 import { Route as EstatusRouteImport } from './routes/estatus'
 import { Route as InventarioRouteImport } from './routes/inventario'
 import { Route as LogisticaRouteImport } from './routes/logistica'
@@ -27,6 +28,11 @@ const IndexRoute = IndexRouteImport.update({
 const AlertasRoute = AlertasRouteImport.update({
   id: '/alertas',
   path: '/alertas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BoletasRoute = BoletasRouteImport.update({
+  id: '/boletas',
+  path: '/boletas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EstatusRoute = EstatusRouteImport.update({
@@ -68,6 +74,7 @@ const ProductoSkuRoute = ProductoSkuRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/alertas': typeof AlertasRoute
+  '/boletas': typeof BoletasRoute
   '/estatus': typeof EstatusRoute
   '/inventario': typeof InventarioRoute
   '/logistica': typeof LogisticaRoute
@@ -79,6 +86,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/alertas': typeof AlertasRoute
+  '/boletas': typeof BoletasRoute
   '/estatus': typeof EstatusRoute
   '/inventario': typeof InventarioRoute
   '/logistica': typeof LogisticaRoute
@@ -91,6 +99,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/alertas': typeof AlertasRoute
+  '/boletas': typeof BoletasRoute
   '/estatus': typeof EstatusRoute
   '/inventario': typeof InventarioRoute
   '/logistica': typeof LogisticaRoute
@@ -104,6 +113,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/alertas'
+    | '/boletas'
     | '/estatus'
     | '/inventario'
     | '/logistica'
@@ -115,6 +125,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/alertas'
+    | '/boletas'
     | '/estatus'
     | '/inventario'
     | '/logistica'
@@ -126,6 +137,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/alertas'
+    | '/boletas'
     | '/estatus'
     | '/inventario'
     | '/logistica'
@@ -138,6 +150,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AlertasRoute: typeof AlertasRoute
+  BoletasRoute: typeof BoletasRoute
   EstatusRoute: typeof EstatusRoute
   InventarioRoute: typeof InventarioRoute
   LogisticaRoute: typeof LogisticaRoute
@@ -161,6 +174,13 @@ declare module '@tanstack/react-router' {
       path: '/alertas'
       fullPath: '/alertas'
       preLoaderRoute: typeof AlertasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/boletas': {
+      id: '/boletas'
+      path: '/boletas'
+      fullPath: '/boletas'
+      preLoaderRoute: typeof BoletasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/estatus': {
@@ -218,6 +238,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AlertasRoute: AlertasRoute,
+  BoletasRoute: BoletasRoute,
   EstatusRoute: EstatusRoute,
   InventarioRoute: InventarioRoute,
   LogisticaRoute: LogisticaRoute,
