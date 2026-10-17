@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, CheckCircle2, AlertTriangle, Smartphone } from 'lucide-react';
+import { QRCodeSVG } from 'qrcode.react';
 
 interface SimuladorYapeModalProps {
   monto: number;
@@ -53,12 +54,27 @@ export const SimuladorYapeModal: React.FC<SimuladorYapeModalProps> = ({
           <div className="text-center animate-fade-in">
             <p className="text-lg font-medium text-gray-800 mb-2">Escanea para pagar</p>
             <p className="text-3xl font-bold text-purple-600 mb-6">S/ {monto.toFixed(2)}</p>
-            
-            <img 
-              src="https://i.imgur.com/y8QyH9Y.png" 
-              alt="QR de Yape de prueba" 
-              className="w-64 h-64 mx-auto mb-6 border-4 border-purple-100 p-2 rounded-xl shadow-inner"
-            />
+
+            <div className="mx-auto mb-6 w-72 rounded-3xl bg-gradient-to-br from-purple-700 to-purple-500 p-4 shadow-lg">
+              <div className="mb-3 flex items-center justify-between px-1 text-white">
+                <span className="text-2xl font-extrabold italic tracking-tight">yape</span>
+                <span className="text-xs font-medium opacity-90">Paga con QR</span>
+              </div>
+              <div className="relative rounded-2xl bg-white p-4">
+                <QRCodeSVG
+                  value={`yape://pay?merchant=PANADERIA-BIMBO-SAC&ruc=20100123456&order=${ordenId}&amount=${monto.toFixed(2)}&currency=PEN`}
+                  size={224}
+                  level="H"
+                  fgColor="#4a1a6b"
+                  bgColor="#ffffff"
+                  className="h-auto w-full"
+                />
+                <div className="absolute left-1/2 top-1/2 flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl border-4 border-white bg-purple-600 shadow">
+                  <span className="text-lg font-extrabold italic text-white">yape</span>
+                </div>
+              </div>
+              <p className="mt-3 text-center text-xs text-white/90">Código válido por 10:00 min</p>
+            </div>
             
             <div className="bg-gray-50 p-4 rounded-xl mb-6 flex items-center justify-center gap-3 text-gray-700">
               <span className="text-sm">A nombre de:</span>
