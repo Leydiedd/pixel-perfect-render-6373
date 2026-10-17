@@ -14,6 +14,7 @@ import { ProductoImagen } from "@/components/ProductoImagen";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { SimuladorYapeModal } from "@/components/SimuladorYapeModal";
+import { descargarArchivo, generarBoleta } from "@/lib/boleta";
 
 export const Route = createFileRoute("/pedido")({
   head: () => ({
@@ -63,11 +64,17 @@ function PedidoEnCurso() {
     });
   };
 
-  const handlePagoExitoso = (id: string, nroOp: string) => {
-    toast.success("¡Pago con Yape validado y pedido enviado a planta!", {
-      description: `Orden: #${id.slice(-6)} · Nro. Operación: ${nroOp} · ${formatoMoneda(totalImporte)}`,
-    });
+  const handlePagoExitoso = async (id: string, nroOp: string) => {
+    const copia = [...lineas];
+    const importe = totalImporte;
     vaciar();
+    const { blob, nombre } = await generarBoleta({ ordenId: id, nroOperacion: nroOp, lineas: copia });
+    descargarArchivo(blob, nombre);
+    toast.success("Pago validado. Boleta de pago generada.", {
+      description: `Orden: #${id.slice(-6)} · Nro. Operación: ${nroOp} · ${formatoMoneda(importe)}`,
+      action: { label: "Descargar boleta", onClick: () => descargarArchivo(blob, nombre) },
+      duration: 15000,
+    });
   };
 
   return (

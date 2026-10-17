@@ -34,7 +34,7 @@ export async function generarBoleta(datos: {
     doc.text(b, m + 40, y);
     y += 6;
   };
-  fila("Cliente:", cuenta.supermercado ?? "Cliente mayorista");
+  fila("Cliente:", `${cuenta.cliente} — ${cuenta.sucursal}`);
   fila("Fecha:", fecha.toLocaleString("es-PE"));
   fila("Orden:", datos.ordenId);
   fila("Medio de pago:", "Yape");
