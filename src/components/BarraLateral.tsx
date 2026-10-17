@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { Activity, AlertTriangle, BarChart3, Boxes, ClipboardList, LayoutDashboard, Truck } from "lucide-react";
+import { Activity, AlertTriangle, BarChart3, Boxes, ClipboardList, LayoutDashboard, Receipt, Truck } from "lucide-react";
 
 const accesos = [
   { to: "/", etiqueta: "Panel de control", icono: LayoutDashboard, exacto: true },
   { to: "/pedido", etiqueta: "Pedidos", icono: ClipboardList, exacto: false },
+  { to: "/boletas", etiqueta: "Boletas", icono: Receipt, exacto: false },
   { to: "/inventario", etiqueta: "Inventario", icono: Boxes, exacto: false },
   { to: "/logistica", etiqueta: "Logística", icono: Truck, exacto: false },
   { to: "/soporte", etiqueta: "Reportes", icono: BarChart3, exacto: false },

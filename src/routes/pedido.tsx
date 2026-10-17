@@ -14,7 +14,7 @@ import { ProductoImagen } from "@/components/ProductoImagen";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { SimuladorYapeModal } from "@/components/SimuladorYapeModal";
-import { descargarArchivo, generarBoleta } from "@/lib/boleta";
+import { descargarArchivo, generarBoleta, guardarBoleta } from "@/lib/boleta";
 
 export const Route = createFileRoute("/pedido")({
   head: () => ({
@@ -68,7 +68,9 @@ function PedidoEnCurso() {
     const copia = [...lineas];
     const importe = totalImporte;
     vaciar();
-    const { blob, nombre } = await generarBoleta({ ordenId: id, nroOperacion: nroOp, lineas: copia });
+    const fecha = new Date().toISOString();
+    guardarBoleta({ ordenId: id, nroOperacion: nroOp, lineas: copia, fecha, total: importe });
+    const { blob, nombre } = await generarBoleta({ ordenId: id, nroOperacion: nroOp, lineas: copia, fecha });
     descargarArchivo(blob, nombre);
     toast.success("Pago validado. Boleta de pago generada.", {
       description: `Orden: #${id.slice(-6)} · Nro. Operación: ${nroOp} · ${formatoMoneda(importe)}`,
