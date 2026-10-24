@@ -1,149 +1,140 @@
-import React, { useState } from 'react';
-import { X, CheckCircle2, AlertTriangle, Smartphone } from 'lucide-react';
-import { QRCodeSVG } from 'qrcode.react';
+import React, { useState } from "react";
+import { AlertTriangle, Paperclip, Smartphone, X } from "lucide-react";
+import yapeQrAsset from "@/assets/yape-qr.png.asset.json";
 
 interface SimuladorYapeModalProps {
   monto: number;
   ordenId: string;
   onClose: () => void;
-  onPagoExitoso: (ordenId: string, nroOperacion: string) => void;
+  onPagoExitoso: (ordenId: string, nroOperacion: string, comprobante: File) => void;
 }
 
-export const SimuladorYapeModal: React.FC<SimuladorYapeModalProps> = ({ 
-  monto, 
-  ordenId, 
-  onClose, 
-  onPagoExitoso 
+export const SimuladorYapeModal: React.FC<SimuladorYapeModalProps> = ({
+  monto,
+  ordenId,
+  onClose,
+  onPagoExitoso,
 }) => {
-  const [nroOperacion, setNroOperacion] = useState('');
-  const [error, setError] = useState('');
-  const [paso, setPaso] = useState<'qr' | 'validacion' | 'exito'>('qr');
+  const [nroOperacion, setNroOperacion] = useState("");
+  const [comprobante, setComprobante] = useState<File | null>(null);
+  const [error, setError] = useState("");
 
-  const simularValidacion = () => {
-    if (nroOperacion.length === 6 && nroOperacion.startsWith('9')) {
-      setError('');
-      setPaso('exito');
-      setTimeout(() => {
-        onPagoExitoso(ordenId, nroOperacion);
-        onClose();
-      }, 2000);
-    } else {
-      setError('Código de operación inválido. Intenta con "987654".');
+  const enviar = () => {
+    if (!nroOperacion.trim()) {
+      setError("Ingresa el número de operación que aparece en tu voucher.");
+      return;
     }
+    if (!comprobante) {
+      setError("Adjunta la captura de tu voucher para continuar.");
+      return;
+    }
+    setError("");
+    onPagoExitoso(ordenId, nroOperacion.trim(), comprobante);
+    onClose();
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md p-6 relative animate-fade-in border border-gray-100">
-        
-        <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+      <div className="animate-fade-in relative w-full max-w-md rounded-3xl border border-border bg-background p-6 shadow-2xl">
+        <button
+          onClick={onClose}
+          aria-label="Cerrar"
+          className="absolute right-4 top-4 text-muted-foreground transition-colors hover:text-foreground"
+        >
           <X size={24} />
         </button>
 
-        <div className="flex items-center gap-3 mb-6 border-b pb-4 border-gray-100">
-          <div className="bg-purple-100 p-3 rounded-full">
-            <Smartphone className="w-8 h-8 text-purple-600" />
+        <div className="mb-6 flex items-center gap-3 border-b border-border pb-4">
+          <div className="rounded-full bg-yape-soft p-3">
+            <Smartphone className="size-8 text-yape" />
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">Simulador Yape</h2>
-            <p className="text-gray-500">Orden #{ordenId.slice(-6)}</p>
+            <h2 className="text-2xl font-bold text-foreground">Verificación de pago B2B</h2>
+            <p className="text-muted-foreground">Orden #{ordenId.slice(-6)}</p>
           </div>
         </div>
 
-        {paso === 'qr' && (
-          <div className="text-center animate-fade-in">
-            <p className="text-lg font-medium text-gray-800 mb-2">Escanea para pagar</p>
-            <p className="text-3xl font-bold text-purple-600 mb-6">S/ {monto.toFixed(2)}</p>
+        <div className="text-center">
+          <p className="mb-4 text-3xl font-bold text-yape">S/ {monto.toFixed(2)}</p>
 
-            <div className="mx-auto mb-6 w-72 rounded-3xl bg-gradient-to-br from-purple-700 to-purple-500 p-4 shadow-lg">
-              <div className="mb-3 flex items-center justify-between px-1 text-white">
-                <span className="text-2xl font-extrabold italic tracking-tight">yape</span>
-                <span className="text-xs font-medium opacity-90">Paga con QR</span>
-              </div>
-              <div className="relative rounded-2xl bg-white p-4">
-                <QRCodeSVG
-                  value={`yape://pay?merchant=PANADERIA-BIMBO-SAC&ruc=20100123456&order=${ordenId}&amount=${monto.toFixed(2)}&currency=PEN`}
-                  size={224}
-                  level="H"
-                  fgColor="#4a1a6b"
-                  bgColor="#ffffff"
-                  className="h-auto w-full"
-                />
-                <div className="absolute left-1/2 top-1/2 flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl border-4 border-white bg-purple-600 shadow">
-                  <span className="text-lg font-extrabold italic text-white">yape</span>
-                </div>
-              </div>
-              <p className="mt-3 text-center text-xs text-white/90">Código válido por 10:00 min</p>
-            </div>
-            
-            <div className="bg-gray-50 p-4 rounded-xl mb-6 flex items-center justify-center gap-3 text-gray-700">
-              <span className="text-sm">A nombre de:</span>
-              <span className="font-semibold text-gray-900">Panaderia Bimbo S.A.C.</span>
-              <span className="bg-purple-600 text-white px-2 py-0.5 rounded text-xs font-bold">B2B</span>
-            </div>
-
-            <button 
-              onClick={() => setPaso('validacion')}
-              className="w-full bg-purple-600 text-white py-4 rounded-xl font-semibold text-lg hover:bg-purple-700 transition-colors shadow-md"
-            >
-              Ya yapeé, validar operación
-            </button>
-          </div>
-        )}
-
-        {paso === 'validacion' && (
-          <div className="animate-fade-in">
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Validar pago</h3>
-            <p className="text-gray-600 mb-6">Ingresa el código de 6 dígitos que aparece en tu voucher de Yape.</p>
-            
-            <input 
-              type="text" 
-              maxLength={6}
-              value={nroOperacion}
-              onChange={(e) => setNroOperacion(e.target.value.replace(/\D/g, ''))}
-              placeholder="Ej: 987654"
-              className="w-full text-center text-4xl tracking-widest font-mono border-2 border-purple-200 rounded-2xl py-5 px-4 mb-2 focus:ring-4 focus:ring-purple-100 focus:border-purple-400 transition"
+          <div className="mx-auto mb-4 w-64 rounded-2xl bg-yape p-3 shadow-lg">
+            <img
+              src={yapeQrAsset.url}
+              alt="Código QR de pago de Panaderías Bimbo Osito"
+              className="w-full rounded-xl"
             />
-            
-            {error && (
-              <p className="text-red-500 text-sm flex items-center gap-2 mb-4 animate-shake">
-                <AlertTriangle size={16} />
-                {error}
-              </p>
-            )}
-
-            <div className="bg-purple-50 border border-purple-100 text-purple-900 p-4 rounded-xl mb-6 text-sm">
-              <strong className="block mb-1">¿Cómo encontrar el código?</strong>
-              Es el número de 6 dígitos que sale debajo de "¡Yapeaste S/. X.XX!". Para este simulador, usa: <strong>987654</strong>
-            </div>
-
-            <div className="flex gap-3">
-              <button 
-                onClick={() => setPaso('qr')}
-                className="flex-1 bg-gray-100 text-gray-700 py-4 rounded-xl font-semibold hover:bg-gray-200 transition-colors"
-              >
-                Atrás
-              </button>
-              <button 
-                onClick={simularValidacion}
-                className="flex-1 bg-purple-600 text-white py-4 rounded-xl font-semibold hover:bg-purple-700 transition-colors shadow-md"
-              >
-                Validar
-              </button>
-            </div>
           </div>
-        )}
 
-        {paso === 'exito' && (
-          <div className="text-center py-12 animate-fade-in">
-            <CheckCircle2 className="w-24 h-24 text-green-500 mx-auto mb-6 animate-scale-in" />
-            <p className="text-3xl font-bold text-gray-900 mb-2">¡Yapeo Validado!</p>
-            <p className="text-xl text-gray-600 mb-6">El pago de S/ {monto.toFixed(2)} se ha registrado correctamente.</p>
-            <p className="text-sm text-gray-500">Nro. Operación: <span className="font-mono bg-gray-100 px-2 py-0.5 rounded">{nroOperacion}</span></p>
-            <p className="text-sm text-gray-500 mt-1">Redirigiendo...</p>
+          <p className="mx-auto mb-5 max-w-xs text-sm text-muted-foreground">
+            Escanea el código QR para transferir el importe exacto a Panaderías Bimbo Osito.
+          </p>
+
+          <div className="mb-6 flex items-center justify-center gap-3 rounded-xl bg-muted p-4 text-foreground">
+            <span className="text-sm">A nombre de:</span>
+            <span className="font-semibold">Panaderías Bimbo Osito</span>
+            <span className="rounded bg-yape px-2 py-0.5 text-xs font-bold text-yape-foreground">
+              B2B
+            </span>
           </div>
-        )}
+        </div>
 
+        <div className="space-y-4">
+          <div>
+            <label
+              htmlFor="nro-operacion"
+              className="mb-1.5 block text-sm font-medium text-foreground"
+            >
+              Número de Operación
+            </label>
+            <input
+              id="nro-operacion"
+              type="text"
+              required
+              value={nroOperacion}
+              onChange={(e) => {
+                setNroOperacion(e.target.value);
+                setError("");
+              }}
+              placeholder="Ej: 000123456"
+              className="w-full rounded-xl border-2 border-input px-4 py-3 font-mono tracking-wider transition focus:border-yape focus:ring-4 focus:ring-yape/15 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <span className="mb-1.5 block text-sm font-medium text-foreground">
+              Captura del voucher
+            </span>
+            <label className="flex cursor-pointer items-center gap-3 rounded-xl border-2 border-dashed border-yape-border bg-yape-soft px-4 py-3 text-sm transition-colors hover:border-yape">
+              <Paperclip className="size-4 shrink-0 text-yape" aria-hidden />
+              <span className="truncate text-muted-foreground">
+                {comprobante ? comprobante.name : "Adjuntar captura del voucher"}
+              </span>
+              <input
+                type="file"
+                accept="image/*,application/pdf"
+                className="sr-only"
+                onChange={(e) => {
+                  setComprobante(e.target.files?.[0] ?? null);
+                  setError("");
+                }}
+              />
+            </label>
+          </div>
+
+          {error && (
+            <p className="animate-shake flex items-center gap-2 text-sm text-destructive">
+              <AlertTriangle size={16} aria-hidden />
+              {error}
+            </p>
+          )}
+
+          <button
+            onClick={enviar}
+            className="w-full rounded-xl bg-yape py-4 text-lg font-semibold text-yape-foreground shadow-md transition-colors hover:bg-yape/90"
+          >
+            Enviar Comprobante y Confirmar
+          </button>
+        </div>
       </div>
     </div>
   );

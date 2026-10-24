@@ -60,6 +60,10 @@
   --color-surface: var(--surface);
   --color-whatsapp: var(--whatsapp);
   --color-whatsapp-foreground: var(--whatsapp-foreground);
+  --color-yape: var(--yape);
+  --color-yape-foreground: var(--yape-foreground);
+  --color-yape-soft: var(--yape-soft);
+  --color-yape-border: var(--yape-border);
 }
 
 :root {
@@ -93,6 +97,10 @@
   --surface: oklch(0.985 0.004 250);
   --whatsapp: oklch(0.72 0.17 156);
   --whatsapp-foreground: oklch(0.99 0.004 106);
+  --yape: oklch(0.42 0.21 307);
+  --yape-foreground: oklch(0.99 0.004 106);
+  --yape-soft: oklch(0.965 0.015 307);
+  --yape-border: oklch(0.87 0.045 307);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -138,6 +146,10 @@
   --surface: oklch(0.18 0.04 264);
   --whatsapp: oklch(0.72 0.17 156);
   --whatsapp-foreground: oklch(0.15 0.03 155);
+  --yape: oklch(0.52 0.2 307);
+  --yape-foreground: oklch(0.99 0.004 106);
+  --yape-soft: oklch(0.24 0.06 307);
+  --yape-border: oklch(0.4 0.1 307);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);

@@ -72,7 +72,7 @@ function PedidoEnCurso() {
     guardarBoleta({ ordenId: id, nroOperacion: nroOp, lineas: copia, fecha, total: importe });
     const { blob, nombre } = await generarBoleta({ ordenId: id, nroOperacion: nroOp, lineas: copia, fecha });
     descargarArchivo(blob, nombre);
-    toast.success("Pago validado. Boleta de pago generada.", {
+    toast.success("¡Comprobante enviado! Tu pedido está en revisión", {
       description: `Orden: #${id.slice(-6)} · Nro. Operación: ${nroOp} · ${formatoMoneda(importe)}`,
       action: { label: "Descargar boleta", onClick: () => descargarArchivo(blob, nombre) },
       duration: 15000,
