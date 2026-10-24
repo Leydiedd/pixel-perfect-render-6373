@@ -118,10 +118,10 @@ export function SimuladorYapeModal({
             <ShieldCheck className="size-6 text-emerald-600" />
           </div>
           <h2 className="mt-2 text-xl font-bold tracking-tight text-foreground">
-            Pasarela de Pago Segura B2B
+            Pasarela de Pago Segura
           </h2>
           <p className="text-xs text-muted-foreground">
-            Orden <span className="font-mono font-medium text-foreground">#{ordenId.slice(-6)}</span> · Encapsulamiento SSL 256-bit
+            Orden <span className="font-mono font-medium text-foreground">#{ordenId.slice(-6)}</span> · Cifrado SSL 256-bit
           </p>
         </div>
 
@@ -147,7 +147,7 @@ export function SimuladorYapeModal({
             }`}
           >
             <QrCode className="size-4" />
-            Yape B2B
+            Yape
           </button>
 
           <button
@@ -173,8 +173,7 @@ export function SimuladorYapeModal({
                   alt="Código QR Yape Bimbo Mayorista"
                   className="w-36 rounded-lg object-cover shadow-sm"
                   onError={(e) => {
-                    // Fallback visual si no existe la foto local
-                    e.currentTarget.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=BimboYapeB2B";
+                    e.currentTarget.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=BimboYapeMayorista";
                   }}
                 />
                 <p className="mt-2 text-center text-[11px] text-muted-foreground">
@@ -323,7 +322,7 @@ export function SimuladorYapeModal({
 
           <p className="flex items-center justify-center gap-1 text-[10px] text-muted-foreground">
             <Lock className="size-3" />
-            Pagos procesados de forma segura con cifrado bancario B2B
+            Pagos procesados de forma segura con cifrado bancario
           </p>
         </form>
       </div>
