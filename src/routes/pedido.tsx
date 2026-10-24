@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AlertTriangle, Trash2, Truck } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { SimuladorYapeModal } from "@/components/SimuladorYapeModal";
 import { descargarArchivo, generarBoleta, guardarBoleta } from "@/lib/boleta";
+import { obtenerProductosDolibarr } from "@/lib/dolibarr";
 
 export const Route = createFileRoute("/pedido")({
   head: () => ({
@@ -30,8 +31,8 @@ export const Route = createFileRoute("/pedido")({
         property: "og:description",
         content: "Resumen editable del pedido mayorista con control de crédito y entrega.",
       },
-       { property: "og:type", content: "website" },
-       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: PedidoEnCurso,
@@ -48,6 +49,17 @@ function PedidoEnCurso() {
 
   const hayBloqueos = lineas.some((l) => alertas(l.sku, l.planchas).length > 0);
   const excedeCredito = creditoDisponible < 0;
+
+  // Prueba de conexión con Dolibarr
+  useEffect(() => {
+    async function probarDolibarr() {
+      const productosDolibarr = await obtenerProductosDolibarr();
+      if (productosDolibarr) {
+        console.log("📦 Productos recibidos de Dolibarr API:", productosDolibarr);
+      }
+    }
+    probarDolibarr();
+  }, []);
 
   const eliminarLinea = (sku: string) => {
     const indice = lineas.findIndex((l) => l.sku === sku);
@@ -120,7 +132,7 @@ function PedidoEnCurso() {
                       <td className="px-5 py-4">
                         <div className="flex gap-3">
                           <ProductoImagen
-                             src={producto.imagenes[0] ?? ""}
+                            src={producto.imagenes[0] ?? ""}
                             alt={producto.nombre}
                             className="size-14 shrink-0 rounded-md"
                           />
