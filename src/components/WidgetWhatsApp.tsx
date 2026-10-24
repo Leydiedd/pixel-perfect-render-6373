@@ -3,7 +3,7 @@ import { X } from "lucide-react";
 import logoWhatsAppAsset from "@/assets/bimbo-whatsapp.png.asset.json";
 
 const ENLACE_WHATSAPP =
-  "https://api.whatsapp.com/send?phone=51974119421&text=Hola%20Bimbo%20Osito,%20necesito%20realizar%20una%20consulta%20sobre%20mi%20pedido%20mayorista&type=phone_number&absent=0";
+  "https://api.whatsapp.com/send?phone=51963106866&text=Hola%20Bimbo%20Osito,%20necesito%20ayuda%20con%20mi%20pedido%20B2B";
 
 export function WidgetWhatsApp() {
   const [burbujaVisible, setBurbujaVisible] = useState(true);
