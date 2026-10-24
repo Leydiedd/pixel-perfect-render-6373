@@ -91,7 +91,10 @@ export const SimuladorYapeModal: React.FC<SimuladorYapeModalProps> = ({
               type="text"
               required
               value={nroOperacion}
-              onChange={(e) => setNroOperacion(e.target.value)}
+              onChange={(e) => {
+                setNroOperacion(e.target.value);
+                setError("");
+              }}
               placeholder="Ej: 000123456"
               className="w-full rounded-xl border-2 border-input px-4 py-3 font-mono tracking-wider transition focus:border-yape focus:ring-4 focus:ring-yape/15 focus:outline-none"
             />
@@ -110,7 +113,10 @@ export const SimuladorYapeModal: React.FC<SimuladorYapeModalProps> = ({
                 type="file"
                 accept="image/*,application/pdf"
                 className="sr-only"
-                onChange={(e) => setComprobante(e.target.files?.[0] ?? null)}
+                onChange={(e) => {
+                  setComprobante(e.target.files?.[0] ?? null);
+                  setError("");
+                }}
               />
             </label>
           </div>
