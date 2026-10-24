@@ -34,40 +34,47 @@ export const SimuladorYapeModal: React.FC<SimuladorYapeModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-yape">
-      <button
-        onClick={onClose}
-        aria-label="Cerrar"
-        className="fixed right-5 top-5 text-yape-foreground/70 transition-colors hover:text-yape-foreground"
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-foreground/60 p-4 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-xs rounded-2xl bg-yape p-4 shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
       >
-        <X size={26} />
-      </button>
+        <button
+          onClick={onClose}
+          aria-label="Cerrar"
+          className="absolute right-3 top-3 text-yape-foreground/70 transition-colors hover:text-yape-foreground"
+        >
+          <X size={18} />
+        </button>
 
-      <div className="mx-auto flex min-h-full w-full max-w-md flex-col justify-center px-6 py-14">
-        <p className="mb-5 text-center text-4xl font-bold text-yape-foreground">
+        <p className="mb-2 pt-1 text-center text-2xl font-bold text-yape-foreground">
           S/ {monto.toFixed(2)}
         </p>
 
         <img
           src={yapeQrAsset.url}
           alt="Código QR de pago de Panaderías Bimbo Osito"
-          className="mx-auto w-full max-w-xs"
+          className="mx-auto block w-full max-w-[13rem]"
         />
 
-        <p className="mx-auto mb-4 mt-5 max-w-xs text-center text-sm text-yape-foreground/90">
+        <p className="mx-auto mb-1.5 mt-2 max-w-[15rem] text-center text-xs leading-snug text-yape-foreground/90">
           Escanea el código QR para transferir el importe exacto a Panaderías Bimbo Osito.
         </p>
 
-        <p className="mb-8 text-center text-sm text-yape-foreground/80">
+        <p className="mb-3 text-center text-xs text-yape-foreground/80">
           A nombre de:{" "}
           <span className="font-semibold text-yape-foreground">Panaderías Bimbo Osito</span>
         </p>
 
-        <div className="space-y-4">
+
+        <div className="space-y-3">
           <div>
             <label
               htmlFor="nro-operacion"
-              className="mb-1.5 block text-sm font-medium text-yape-foreground"
+              className="mb-1 block text-xs font-medium text-yape-foreground"
             >
               Número de Operación
             </label>
@@ -81,16 +88,16 @@ export const SimuladorYapeModal: React.FC<SimuladorYapeModalProps> = ({
                 setError("");
               }}
               placeholder="Ej: 000123456"
-              className="w-full rounded-xl border border-yape-foreground/25 bg-yape-foreground/10 px-4 py-3 font-mono tracking-wider text-yape-foreground transition placeholder:text-yape-foreground/45 focus:border-yape-foreground/60 focus:bg-yape-foreground/15 focus:outline-none"
+              className="w-full rounded-lg border border-yape-foreground/25 bg-yape-foreground/10 px-3 py-2 text-sm font-mono tracking-wider text-yape-foreground transition placeholder:text-yape-foreground/45 focus:border-yape-foreground/60 focus:bg-yape-foreground/15 focus:outline-none"
             />
           </div>
 
           <div>
-            <span className="mb-1.5 block text-sm font-medium text-yape-foreground">
+            <span className="mb-1 block text-xs font-medium text-yape-foreground">
               Captura del voucher
             </span>
-            <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-dashed border-yape-foreground/30 bg-yape-foreground/10 px-4 py-3 text-sm transition-colors hover:border-yape-foreground/60">
-              <Paperclip className="size-4 shrink-0 text-yape-foreground" aria-hidden />
+            <label className="flex cursor-pointer items-center gap-2 rounded-lg border border-dashed border-yape-foreground/30 bg-yape-foreground/10 px-3 py-2 text-xs transition-colors hover:border-yape-foreground/60">
+              <Paperclip className="size-3.5 shrink-0 text-yape-foreground" aria-hidden />
               <span className="truncate text-yape-foreground/75">
                 {comprobante ? comprobante.name : "Adjuntar captura del voucher"}
               </span>
@@ -107,15 +114,15 @@ export const SimuladorYapeModal: React.FC<SimuladorYapeModalProps> = ({
           </div>
 
           {error && (
-            <p className="flex items-center gap-2 rounded-lg bg-yape-foreground/15 px-3 py-2 text-sm text-yape-foreground">
-              <AlertTriangle size={16} aria-hidden />
+            <p className="flex items-center gap-2 rounded-md bg-yape-foreground/15 px-2.5 py-1.5 text-xs text-yape-foreground">
+              <AlertTriangle size={13} aria-hidden />
               {error}
             </p>
           )}
 
           <button
             onClick={enviar}
-            className="w-full rounded-xl bg-yape-accent py-4 text-lg font-semibold text-yape-accent-foreground transition-colors hover:bg-yape-accent/90"
+            className="w-full rounded-lg bg-yape-accent py-2.5 text-sm font-semibold text-yape-accent-foreground transition-colors hover:bg-yape-accent/90"
           >
             Enviar Comprobante y Confirmar
           </button>
