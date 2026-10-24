@@ -22,11 +22,9 @@ export function SimuladorYapeModal({
   const [procesando, setProcesando] = useState(false);
   const [error, setError] = useState("");
 
-  // Estado para Yape
   const [nroOperacion, setNroOperacion] = useState("");
   const [archivoVoucher, setArchivoVoucher] = useState<File | null>(null);
 
-  // Estado para Tarjeta
   const [nroTarjeta, setNroTarjeta] = useState("");
   const [expiracion, setExpiracion] = useState("");
   const [cvv, setCvv] = useState("");
@@ -90,7 +88,6 @@ export function SimuladorYapeModal({
     setProcesando(true);
     setError("");
 
-    // Simulación de procesamiento de la pasarela en 1.5 segundos
     setTimeout(() => {
       setProcesando(false);
       const codigoGenerado = metodoPago === "yape" 
@@ -125,7 +122,6 @@ export function SimuladorYapeModal({
           </p>
         </div>
 
-        {/* Resumen de Monto */}
         <div className="mt-4 rounded-xl bg-muted/60 p-3.5 text-center border border-border">
           <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
             Monto a procesar
@@ -135,7 +131,6 @@ export function SimuladorYapeModal({
           </p>
         </div>
 
-        {/* Selector de Método de Pago */}
         <div className="mt-4 grid grid-cols-2 gap-2 rounded-lg bg-muted p-1">
           <button
             type="button"
@@ -169,16 +164,10 @@ export function SimuladorYapeModal({
             <>
               <div className="flex flex-col items-center justify-center rounded-xl border border-border p-3 bg-card">
                 <img
-                  src="/qr-yape.jpg"
-                  alt="Código QR Yape Bimbo Mayorista"
-                  className="w-36 rounded-lg object-cover shadow-sm"
-                  onError={(e) => {
-                    e.currentTarget.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=BimboYapeMayorista";
-                  }}
+                  src="/yape.jpg"
+                  alt="Código QR Yape"
+                  className="w-44 rounded-lg object-contain shadow-sm border border-border"
                 />
-                <p className="mt-2 text-center text-[11px] text-muted-foreground">
-                  Escanea con tu App de Yape a <strong>Panadería Bimbo S.A.C.</strong>
-                </p>
               </div>
 
               <div className="space-y-1">
