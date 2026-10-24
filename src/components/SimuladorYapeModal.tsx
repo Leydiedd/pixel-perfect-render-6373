@@ -164,7 +164,7 @@ export function SimuladorYapeModal({
             <>
               <div className="flex flex-col items-center justify-center rounded-xl border border-border p-3 bg-card">
                 <img
-                  src="/yape.jpg"
+                  src="/yapee.png"
                   alt="Código QR Yape"
                   className="w-44 rounded-lg object-contain shadow-sm border border-border"
                 />
