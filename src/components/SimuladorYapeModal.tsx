@@ -50,24 +50,25 @@ export const SimuladorYapeModal: React.FC<SimuladorYapeModalProps> = ({
           <X size={18} />
         </button>
 
-        <p className="mb-3 pt-1 text-center text-2xl font-bold text-yape-foreground">
+        <p className="mb-2 pt-1 text-center text-2xl font-bold text-yape-foreground">
           S/ {monto.toFixed(2)}
         </p>
 
         <img
           src={yapeQrAsset.url}
           alt="Código QR de pago de Panaderías Bimbo Osito"
-          className="mx-auto block w-full"
+          className="mx-auto block w-full max-w-[13rem]"
         />
 
-        <p className="mx-auto mb-2 mt-3 max-w-[15rem] text-center text-xs leading-snug text-yape-foreground/90">
+        <p className="mx-auto mb-1.5 mt-2 max-w-[15rem] text-center text-xs leading-snug text-yape-foreground/90">
           Escanea el código QR para transferir el importe exacto a Panaderías Bimbo Osito.
         </p>
 
-        <p className="mb-4 text-center text-xs text-yape-foreground/80">
+        <p className="mb-3 text-center text-xs text-yape-foreground/80">
           A nombre de:{" "}
           <span className="font-semibold text-yape-foreground">Panaderías Bimbo Osito</span>
         </p>
+
 
         <div className="space-y-3">
           <div>
