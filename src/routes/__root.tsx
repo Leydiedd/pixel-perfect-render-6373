@@ -1,3 +1,5 @@
+import { EstadoConexion } from "@/components/EstadoConexion";
+import { PortalShell } from "@/components/PortalShell";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -11,11 +13,7 @@ import { lazy, useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { EncabezadoApp } from "@/components/EncabezadoApp";
-import { BarraLateral } from "@/components/BarraLateral";
-import { ProveedorPedido } from "@/context/pedido";
 import { Toaster } from "@/components/ui/sonner";
-import { WidgetWhatsApp } from "@/components/WidgetWhatsApp";
 import { Button } from "@/components/ui/button";
 
 function NotFoundComponent() {
@@ -28,7 +26,9 @@ function NotFoundComponent() {
           La página que buscas no existe o fue movida.
         </p>
         <div className="mt-6">
-          <Button asChild><Link to="/">Ir al panel</Link></Button>
+          <Button asChild>
+            <Link to="/">Ir al panel</Link>
+          </Button>
         </div>
       </div>
     </div>
@@ -79,23 +79,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Bimbo Osito — Dashboard de Suministro" },
+      { title: "Bimbo · Tienda y administración" },
       {
         name: "description",
-        content:
-          "Portal mayorista de Bimbo para gerentes de compras de supermercados y minimarkets.",
+        content: "Compra para tu hogar o tu negocio.",
       },
       { property: "og:title", content: "Bimbo Osito — Dashboard de Suministro" },
       {
         property: "og:description",
-        content: "Catálogo por SKU, pedido rápido y soporte para compras al por mayor.",
+        content: "Tienda para personas y negocios.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-       { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
   }),
   shellComponent: RootShell,
@@ -123,25 +122,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ProveedorPedido>
-        <div className="app-shell flex min-h-screen flex-col">
-          <EncabezadoApp />
-          <div className="flex flex-1">
-            <BarraLateral />
-            <main className="relative min-w-0 flex-1">
-              <Outlet />
-            </main>
-          </div>
-          <footer className="border-t border-border bg-background">
-            <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 px-6 py-6 text-xs text-muted-foreground">
-              <span>Bimbo Osito · Cadena de Suministro</span>
-              <span>Precios sin IGV. Entrega sujeta a disponibilidad de planta.</span>
-            </div>
-          </footer>
-        </div>
-        <Toaster position="bottom-right" />
-        <WidgetWhatsApp />
-      </ProveedorPedido>
+      <a href="#contenido-principal" className="skip-link">
+        Saltar al contenido
+      </a>
+      <EstadoConexion />
+      <PortalShell>
+        <Outlet />
+      </PortalShell>
+      <Toaster position="top-right" richColors closeButton duration={5000} visibleToasts={2} />
     </QueryClientProvider>
   );
 }

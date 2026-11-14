@@ -1,0 +1,42 @@
+GANANCIA NETA MENSUAL — PROYECTO BIMBO
+
+Ubicación: Administración > Reportes > Ganancia neta / Ganancia por mes.
+Datos de noviembre de 2024 a noviembre de 2026. Noviembre de 2026 tiene corte provisional al día 13.
+
+Respaldo previo: C:/Users/alfon/OneDrive/Documentos/ChatGPT/Alfonzo/output/backups/bimbo-20261113-antes-ganancia-neta
+Incluye SQL, documentos, código y configuración local (contiene credenciales; conservar privado).
+La exportación SQL contiene GTID de MySQL. Para restaurar en el mismo servidor o importar solo esta base, preparar una copia que omita SET @@GLOBAL.GTID_PURGED y los cambios SQL_LOG_BIN; no ejecutar estos ajustes globales sobre un servidor con otras bases sin revisar. No sobrescribir la base activa para verificar un respaldo.
+
+FUENTES Y NO DUPLICACIÓN
+- Ventas: facturas validadas, sin anuladas ni proformas, sin IGV; conserva signo de notas de crédito.
+- Costo vendido: buy_price_ht por cantidad de las líneas de factura. Redondeo monetario por línea compartido con los reportes existentes; no modifica precios ni costos en la base.
+- Compras de materias primas: no se restan otra vez.
+- Servicios existentes de logística, alquiler, publicidad y servicios generales: gasto operativo.
+- Servicios industriales (energía, mantenimiento, limpieza industrial y talleres): asumidos absorbidos en costo vendido.
+- Nómina histórica bimbo01–08 (según etiqueta original, no login actual): administración/comercial. Bimbo09–20: producción, asumida incluida en costo vendido.
+- Los usuarios vinculados a esa nómina histórica fueron reutilizados previamente como clientes. Por eso se conserva el identificador bimbo de la etiqueta, sin modificar cuentas ni contraseñas. Es una limitación del histórico académico.
+
+GASTOS AÑADIDOS
+102 asientos equilibrados / 204 líneas nativas de llx_accounting_bookkeeping; diario BIMBO, import_key GN261113. No crean cobros ni pagos bancarios.
+629101: beneficios de administración, 20% de la nómina administrativa; contrapartida 419101.
+681101: depreciación de administración/distribución, activos supuestos S/480000 en 60 meses; contrapartida 391101.
+671101: interés mensual supuesto 1% de S/450000, principal decrece S/7500 mensuales; contrapartida 459101. El principal no se descuenta como gasto.
+881101: provisión académica de renta, 29.5% del resultado acumulado positivo de cada año, menos lo provisionado antes; contrapartida 401701. Puede revertirse en meses con pérdida. Sin arrastre fiscal de pérdidas ni ajustes tributarios. 2024 solo cubre noviembre-diciembre.
+631199 / 621199: servicios y nómina devengados al 13/11/2026, proporcional a octubre. Beneficios, depreciación e intereses de noviembre también proporcionales.
+Clasificación, cuentas y cobertura guardadas en llx_const, BIMBO_NET_PROFIT_POLICY.
+Contabilidad avanzada habilitada y ejercicios 2024–2026 abiertos para esos asientos. No se trasladaron facturas, pagos ni sueldos a contabilidad; el diario no es un libro mayor completo de toda la empresa.
+
+CÁLCULO
+Ventas - costo vendido = margen bruto.
+Margen bruto - servicios operativos - nómina administrativa - beneficios - depreciación - intereses - provisión de renta = resultado neto estimado.
+Los filtros de estas dos vistas seleccionan meses, aunque el selector permita un día intermedio. No se reparten gastos generales entre B2B y B2C.
+Meses con facturas posteriores al corte de gastos, sueldos/servicios desconocidos o costos faltantes muestran datos incompletos y no inventan utilidad. Para cerrar un mes nuevo se deben registrar/clasificar los gastos y ampliar la cobertura en Dolibarr; no basta registrar ventas.
+No equivale a flujo de caja, utilidad auditada ni declaración SUNAT.
+Fuente de tasa general consultada: https://orientacion.sunat.gob.pe/03-tasa-del-impuesto
+
+PDF E IA
+Todos los botones Descargar PDF de los reportes comparten el exportador. Incluye las filas filtradas completas y una página con Comentario de la IA.
+La explicación usa totales monetarios de todas las filas y una muestra explícita de hasta 30 filas. No suma porcentajes, unidades heterogéneas ni indicadores del resumen ejecutivo.
+Se reutiliza el comentario durante 30 minutos si datos y filtros coinciden. El refresco de la hora de consulta no genera una explicación nueva. Solo administración; API key en servidor y consultas registradas en métricas existentes.
+Si falla la IA se informa el error y se permite reintentar; el CSV permanece disponible.
+

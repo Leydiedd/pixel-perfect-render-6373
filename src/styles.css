@@ -194,10 +194,261 @@
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background-image: linear-gradient(var(--texture-overlay), var(--texture-overlay)), var(--texture-panes);
-  background-size: auto, 368px auto;
+  background-image:
+    linear-gradient(var(--texture-overlay), var(--texture-overlay)), var(--texture-panes);
+  background-size:
+    auto,
+    368px auto;
   background-repeat: repeat;
 }
 
-:root { --texture-overlay: oklch(0.95 0.008 260 / 93%); }
-.dark { --texture-overlay: oklch(0.18 0.04 264 / 94%); }
+:root {
+  --texture-overlay: oklch(0.95 0.008 260 / 93%);
+}
+.dark {
+  --texture-overlay: oklch(0.18 0.04 264 / 94%);
+}
+
+/* Shared interaction and small-screen layout. Business state stays in the existing flows. */
+html {
+  scroll-padding-top: 12rem;
+}
+body {
+  min-width: 0;
+}
+img,
+canvas {
+  max-width: 100%;
+}
+:where(button, a, input, select, textarea):focus-visible {
+  outline: 2px solid #2366ad;
+  outline-offset: 3px;
+}
+[role="alert"] {
+  overflow-wrap: anywhere;
+}
+[role="tablist"] {
+  max-width: 100%;
+  overflow-x: auto;
+  justify-content: flex-start;
+}
+[role="tab"] {
+  flex-shrink: 0;
+}
+.tabla-adaptable td {
+  overflow-wrap: break-word;
+}
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  transform: translateY(-180%);
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: white;
+  color: #20344e;
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+@media (max-width: 639px) {
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    font-size: 16px !important;
+    min-height: 44px;
+    max-width: 100%;
+  }
+  button,
+  [role="button"] {
+    min-height: 44px;
+  }
+  [role="dialog"],
+  [role="alertdialog"] {
+    max-width: calc(100vw - 24px);
+    max-height: calc(100dvh - 24px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-radius: 16px;
+  }
+  [role="dialog"] h2,
+  [role="alertdialog"] h2 {
+    padding-right: 24px;
+    overflow-wrap: anywhere;
+  }
+  [role="dialog"] > button:last-child {
+    min-width: 36px;
+    min-height: 36px;
+    top: 8px;
+    right: 8px;
+  }
+  .store-shell > header > div:first-child {
+    gap: 8px;
+    padding: 12px 16px;
+  }
+  .store-shell > header nav {
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .store-shell > header nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .store-shell > header > div:nth-child(2) {
+    padding: 0 16px 12px;
+  }
+  .store-shell > header > div:nth-child(2) > span {
+    font-size: 11px;
+  }
+  .store-shell h1 {
+    font-size: clamp(1.5rem, 7vw, 2.25rem);
+  }
+  .store-shell .store-hero {
+    margin-top: 16px;
+  }
+  .store-shell .store-hero > div[aria-hidden="true"] {
+    display: none;
+  }
+  .app-shell header > div:first-child {
+    gap: 8px;
+  }
+  .app-shell header > div:first-child > div:last-child {
+    gap: 8px;
+  }
+  .tabla-adaptable {
+    display: block;
+    min-width: 0 !important;
+    width: 100%;
+  }
+  .tabla-adaptable thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .tabla-adaptable tbody {
+    display: grid;
+    width: 100%;
+    gap: 12px;
+    padding: 12px;
+  }
+  .tabla-adaptable tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    border: 1px solid #dce2e9;
+    border-radius: 14px;
+    background: white;
+    padding: 4px 14px;
+  }
+  .tabla-adaptable tbody td {
+    overflow-wrap: anywhere;
+    display: block;
+    padding: 10px 0 !important;
+    min-width: 0 !important;
+    max-width: 100%;
+    white-space: normal !important;
+    border-bottom: 1px solid #edf0f4;
+  }
+  .tabla-adaptable tbody td:last-child {
+    border-bottom: 0;
+  }
+  .tabla-adaptable tbody td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #64748b;
+  }
+  .tabla-adaptable td button {
+    white-space: normal;
+    height: auto;
+    min-height: 44px;
+  }
+  .tabla-adaptable td p {
+    max-width: none;
+  }
+  .tabla-adaptable tfoot {
+    display: block;
+    padding: 12px;
+  }
+  .tabla-adaptable tfoot tr {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  [data-sonner-toaster] {
+    --width: calc(100vw - 24px) !important;
+    --mobile-offset: 12px !important;
+  }
+  .whatsapp-widget {
+    bottom: 12px;
+    right: 12px;
+    z-index: 30;
+  }
+  .whatsapp-widget > div {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 639px) {
+  .store-shell > header > div:first-child {
+    position: relative;
+  }
+  .store-shell > header nav a[href="/carrito"] {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    padding: 8px 12px;
+    min-height: 40px;
+    font-size: 12px;
+  }
+  .store-shell > header nav {
+    margin-top: 6px;
+  }
+  .store-shell .store-brand {
+    font-size: 28px;
+  }
+}
+
+/* Keep actions reachable above floating assistants and at narrow viewport sizes. */
+.app-shell main,
+.store-shell main {
+  padding-bottom: 5rem;
+}
+@media (max-width: 639px) {
+  [role="dialog"] [role="tablist"] {
+    height: auto;
+    flex-wrap: wrap;
+  }
+  [role="dialog"] [role="tabpanel"] {
+    min-width: 0;
+  }
+  [id^="pedido-"] {
+    scroll-margin-top: 14rem;
+  }
+}
+
+@media (max-width: 639px) {
+  [data-sonner-toast] [data-close-button] {
+    min-width: 32px;
+    min-height: 32px;
+    width: 32px;
+    height: 32px;
+  }
+}

@@ -30,3 +30,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Private sessions (never publish)
+.local/
+
+# Secrets (server only)
+.env
+.env.*

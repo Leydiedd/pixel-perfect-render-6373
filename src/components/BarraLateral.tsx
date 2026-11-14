@@ -1,22 +1,36 @@
 import { Link } from "@tanstack/react-router";
-import { Activity, AlertTriangle, BarChart3, Boxes, ClipboardList, LayoutDashboard, Receipt, Truck } from "lucide-react";
+import {
+  Activity,
+  Bot,
+  AlertTriangle,
+  BarChart3,
+  Boxes,
+  ClipboardList,
+  LayoutDashboard,
+  Receipt,
+  Truck,
+} from "lucide-react";
 
 const accesos = [
-  { to: "/", etiqueta: "Panel de control", icono: LayoutDashboard, exacto: true },
-  { to: "/pedido", etiqueta: "Pedidos", icono: ClipboardList, exacto: false },
-  { to: "/boletas", etiqueta: "Boletas", icono: Receipt, exacto: false },
-  { to: "/inventario", etiqueta: "Inventario", icono: Boxes, exacto: false },
-  { to: "/logistica", etiqueta: "Logística", icono: Truck, exacto: false },
-  { to: "/soporte", etiqueta: "Reportes", icono: BarChart3, exacto: false },
-  { to: "/alertas", etiqueta: "Alertas", icono: AlertTriangle, exacto: false },
-  { to: "/estatus", etiqueta: "Estatus", icono: Activity, exacto: false },
+  { to: "/admin", etiqueta: "Panel de control", icono: LayoutDashboard, exacto: true },
+  { to: "/admin/pedido", etiqueta: "Pedidos", icono: ClipboardList, exacto: false },
+  { to: "/admin/boletas", etiqueta: "Facturas", icono: Receipt, exacto: false },
+  { to: "/admin/inventario", etiqueta: "Inventario", icono: Boxes, exacto: false },
+  { to: "/admin/logistica", etiqueta: "Logística", icono: Truck, exacto: false },
+  { to: "/admin/soporte", etiqueta: "Reportes", icono: BarChart3, exacto: false },
+  { to: "/admin/calidad-datos", etiqueta: "Calidad de datos", icono: ClipboardList, exacto: false },
+  { to: "/admin/alertas", etiqueta: "Alertas", icono: AlertTriangle, exacto: false },
+  { to: "/admin/chatbot", etiqueta: "Consumo del chatbot", icono: Bot, exacto: false },
+  { to: "/admin/estatus", etiqueta: "Estatus", icono: Activity, exacto: false },
 ] as const;
 
 export function BarraLateral() {
   return (
     <aside className="hidden w-56 shrink-0 border-r border-border bg-background/90 backdrop-blur lg:block">
       <nav className="sticky top-28 flex flex-col gap-1 p-3" aria-label="Accesos gerenciales">
-        <p className="px-3 pb-2 pt-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Gestión</p>
+        <p className="px-3 pb-2 pt-1 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+          Gestión
+        </p>
         {accesos.map(({ to, etiqueta, icono: Icono, exacto }) => (
           <Link
             key={to}

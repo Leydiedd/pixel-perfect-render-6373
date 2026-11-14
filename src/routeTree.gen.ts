@@ -10,19 +10,66 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AccesoRouteImport } from './routes/acceso'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AlertasRouteImport } from './routes/alertas'
 import { Route as BoletasRouteImport } from './routes/boletas'
+import { Route as CarritoRouteImport } from './routes/carrito'
 import { Route as EstatusRouteImport } from './routes/estatus'
 import { Route as InventarioRouteImport } from './routes/inventario'
 import { Route as LogisticaRouteImport } from './routes/logistica'
+import { Route as MiCuentaRouteImport } from './routes/mi-cuenta'
 import { Route as PedidoRouteImport } from './routes/pedido'
 import { Route as PedidoRapidoRouteImport } from './routes/pedido-rapido'
+import { Route as RegistroRouteImport } from './routes/registro'
 import { Route as SoporteRouteImport } from './routes/soporte'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminAlertasRouteImport } from './routes/admin.alertas'
+import { Route as AdminBoletasRouteImport } from './routes/admin.boletas'
+import { Route as AdminCalidadDatosRouteImport } from './routes/admin.calidad-datos'
+import { Route as AdminChatbotRouteImport } from './routes/admin.chatbot'
+import { Route as AdminEstatusRouteImport } from './routes/admin.estatus'
+import { Route as AdminInventarioRouteImport } from './routes/admin.inventario'
+import { Route as AdminLogisticaRouteImport } from './routes/admin.logistica'
+import { Route as AdminPedidoRouteImport } from './routes/admin.pedido'
+import { Route as AdminPedidoRapidoRouteImport } from './routes/admin.pedido-rapido'
+import { Route as AdminSoporteRouteImport } from './routes/admin.soporte'
+import { Route as ApiAdminNotificacionesRouteImport } from './routes/api.admin-notificaciones'
+import { Route as ApiAsistenteRouteImport } from './routes/api.asistente'
+import { Route as ApiCalidadDatosRouteImport } from './routes/api.calidad-datos'
+import { Route as ApiChatMetricasRouteImport } from './routes/api.chat-metricas'
+import { Route as ApiCompraRouteImport } from './routes/api.compra'
+import { Route as ApiCuentaRouteImport } from './routes/api.cuenta'
+import { Route as ApiDolibarrRouteImport } from './routes/api.dolibarr'
+import { Route as ApiEntregasRouteImport } from './routes/api.entregas'
+import { Route as ApiEntregasPrevistasRouteImport } from './routes/api.entregas-previstas'
+import { Route as ApiNotificacionesRouteImport } from './routes/api.notificaciones'
+import { Route as ApiPagoClienteRouteImport } from './routes/api.pago-cliente'
+import { Route as ApiPagosRouteImport } from './routes/api.pagos'
+import { Route as ApiPedidoDetalleRouteImport } from './routes/api.pedido-detalle'
+import { Route as ApiPedidosRouteImport } from './routes/api.pedidos'
+import { Route as ApiProductoFotoRouteImport } from './routes/api.producto-foto'
+import { Route as ApiRecojosRouteImport } from './routes/api.recojos'
+import { Route as ApiRegistroRouteImport } from './routes/api.registro'
+import { Route as ApiReporteComentarioRouteImport } from './routes/api.reporte-comentario'
+import { Route as ApiSesionRouteImport } from './routes/api.sesion'
+import { Route as ApiTiendaRouteImport } from './routes/api.tienda'
 import { Route as ProductoSkuRouteImport } from './routes/producto.$sku'
+import { Route as AdminProductoSkuRouteImport } from './routes/admin.producto.$sku'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccesoRoute = AccesoRouteImport.update({
+  id: '/acceso',
+  path: '/acceso',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AlertasRoute = AlertasRouteImport.update({
@@ -33,6 +80,11 @@ const AlertasRoute = AlertasRouteImport.update({
 const BoletasRoute = BoletasRouteImport.update({
   id: '/boletas',
   path: '/boletas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarritoRoute = CarritoRouteImport.update({
+  id: '/carrito',
+  path: '/carrito',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EstatusRoute = EstatusRouteImport.update({
@@ -50,6 +102,11 @@ const LogisticaRoute = LogisticaRouteImport.update({
   path: '/logistica',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MiCuentaRoute = MiCuentaRouteImport.update({
+  id: '/mi-cuenta',
+  path: '/mi-cuenta',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PedidoRoute = PedidoRouteImport.update({
   id: '/pedido',
   path: '/pedido',
@@ -60,9 +117,169 @@ const PedidoRapidoRoute = PedidoRapidoRouteImport.update({
   path: '/pedido-rapido',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegistroRoute = RegistroRouteImport.update({
+  id: '/registro',
+  path: '/registro',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SoporteRoute = SoporteRouteImport.update({
   id: '/soporte',
   path: '/soporte',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAlertasRoute = AdminAlertasRouteImport.update({
+  id: '/alertas',
+  path: '/alertas',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminBoletasRoute = AdminBoletasRouteImport.update({
+  id: '/boletas',
+  path: '/boletas',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCalidadDatosRoute = AdminCalidadDatosRouteImport.update({
+  id: '/calidad-datos',
+  path: '/calidad-datos',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminChatbotRoute = AdminChatbotRouteImport.update({
+  id: '/chatbot',
+  path: '/chatbot',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminEstatusRoute = AdminEstatusRouteImport.update({
+  id: '/estatus',
+  path: '/estatus',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminInventarioRoute = AdminInventarioRouteImport.update({
+  id: '/inventario',
+  path: '/inventario',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLogisticaRoute = AdminLogisticaRouteImport.update({
+  id: '/logistica',
+  path: '/logistica',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPedidoRoute = AdminPedidoRouteImport.update({
+  id: '/pedido',
+  path: '/pedido',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPedidoRapidoRoute = AdminPedidoRapidoRouteImport.update({
+  id: '/pedido-rapido',
+  path: '/pedido-rapido',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSoporteRoute = AdminSoporteRouteImport.update({
+  id: '/soporte',
+  path: '/soporte',
+  getParentRoute: () => AdminRoute,
+} as any)
+const ApiAdminNotificacionesRoute = ApiAdminNotificacionesRouteImport.update({
+  id: '/api/admin-notificaciones',
+  path: '/api/admin-notificaciones',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAsistenteRoute = ApiAsistenteRouteImport.update({
+  id: '/api/asistente',
+  path: '/api/asistente',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCalidadDatosRoute = ApiCalidadDatosRouteImport.update({
+  id: '/api/calidad-datos',
+  path: '/api/calidad-datos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiChatMetricasRoute = ApiChatMetricasRouteImport.update({
+  id: '/api/chat-metricas',
+  path: '/api/chat-metricas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCompraRoute = ApiCompraRouteImport.update({
+  id: '/api/compra',
+  path: '/api/compra',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCuentaRoute = ApiCuentaRouteImport.update({
+  id: '/api/cuenta',
+  path: '/api/cuenta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDolibarrRoute = ApiDolibarrRouteImport.update({
+  id: '/api/dolibarr',
+  path: '/api/dolibarr',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiEntregasRoute = ApiEntregasRouteImport.update({
+  id: '/api/entregas',
+  path: '/api/entregas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiEntregasPrevistasRoute = ApiEntregasPrevistasRouteImport.update({
+  id: '/api/entregas-previstas',
+  path: '/api/entregas-previstas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiNotificacionesRoute = ApiNotificacionesRouteImport.update({
+  id: '/api/notificaciones',
+  path: '/api/notificaciones',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPagoClienteRoute = ApiPagoClienteRouteImport.update({
+  id: '/api/pago-cliente',
+  path: '/api/pago-cliente',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPagosRoute = ApiPagosRouteImport.update({
+  id: '/api/pagos',
+  path: '/api/pagos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPedidoDetalleRoute = ApiPedidoDetalleRouteImport.update({
+  id: '/api/pedido-detalle',
+  path: '/api/pedido-detalle',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPedidosRoute = ApiPedidosRouteImport.update({
+  id: '/api/pedidos',
+  path: '/api/pedidos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiProductoFotoRoute = ApiProductoFotoRouteImport.update({
+  id: '/api/producto-foto',
+  path: '/api/producto-foto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiRecojosRoute = ApiRecojosRouteImport.update({
+  id: '/api/recojos',
+  path: '/api/recojos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiRegistroRoute = ApiRegistroRouteImport.update({
+  id: '/api/registro',
+  path: '/api/registro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiReporteComentarioRoute = ApiReporteComentarioRouteImport.update({
+  id: '/api/reporte-comentario',
+  path: '/api/reporte-comentario',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSesionRoute = ApiSesionRouteImport.update({
+  id: '/api/sesion',
+  path: '/api/sesion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiTiendaRoute = ApiTiendaRouteImport.update({
+  id: '/api/tienda',
+  path: '/api/tienda',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductoSkuRoute = ProductoSkuRouteImport.update({
@@ -70,93 +287,343 @@ const ProductoSkuRoute = ProductoSkuRouteImport.update({
   path: '/producto/$sku',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminProductoSkuRoute = AdminProductoSkuRouteImport.update({
+  id: '/producto/$sku',
+  path: '/producto/$sku',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/acceso': typeof AccesoRoute
+  '/admin': typeof AdminRouteWithChildren
   '/alertas': typeof AlertasRoute
   '/boletas': typeof BoletasRoute
+  '/carrito': typeof CarritoRoute
   '/estatus': typeof EstatusRoute
   '/inventario': typeof InventarioRoute
   '/logistica': typeof LogisticaRoute
+  '/mi-cuenta': typeof MiCuentaRoute
   '/pedido': typeof PedidoRoute
   '/pedido-rapido': typeof PedidoRapidoRoute
+  '/registro': typeof RegistroRoute
   '/soporte': typeof SoporteRoute
+  '/admin/alertas': typeof AdminAlertasRoute
+  '/admin/boletas': typeof AdminBoletasRoute
+  '/admin/calidad-datos': typeof AdminCalidadDatosRoute
+  '/admin/chatbot': typeof AdminChatbotRoute
+  '/admin/estatus': typeof AdminEstatusRoute
+  '/admin/inventario': typeof AdminInventarioRoute
+  '/admin/logistica': typeof AdminLogisticaRoute
+  '/admin/pedido': typeof AdminPedidoRoute
+  '/admin/pedido-rapido': typeof AdminPedidoRapidoRoute
+  '/admin/soporte': typeof AdminSoporteRoute
+  '/api/admin-notificaciones': typeof ApiAdminNotificacionesRoute
+  '/api/asistente': typeof ApiAsistenteRoute
+  '/api/calidad-datos': typeof ApiCalidadDatosRoute
+  '/api/chat-metricas': typeof ApiChatMetricasRoute
+  '/api/compra': typeof ApiCompraRoute
+  '/api/cuenta': typeof ApiCuentaRoute
+  '/api/dolibarr': typeof ApiDolibarrRoute
+  '/api/entregas': typeof ApiEntregasRoute
+  '/api/entregas-previstas': typeof ApiEntregasPrevistasRoute
+  '/api/notificaciones': typeof ApiNotificacionesRoute
+  '/api/pago-cliente': typeof ApiPagoClienteRoute
+  '/api/pagos': typeof ApiPagosRoute
+  '/api/pedido-detalle': typeof ApiPedidoDetalleRoute
+  '/api/pedidos': typeof ApiPedidosRoute
+  '/api/producto-foto': typeof ApiProductoFotoRoute
+  '/api/recojos': typeof ApiRecojosRoute
+  '/api/registro': typeof ApiRegistroRoute
+  '/api/reporte-comentario': typeof ApiReporteComentarioRoute
+  '/api/sesion': typeof ApiSesionRoute
+  '/api/tienda': typeof ApiTiendaRoute
   '/producto/$sku': typeof ProductoSkuRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/producto/$sku': typeof AdminProductoSkuRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/acceso': typeof AccesoRoute
   '/alertas': typeof AlertasRoute
   '/boletas': typeof BoletasRoute
+  '/carrito': typeof CarritoRoute
   '/estatus': typeof EstatusRoute
   '/inventario': typeof InventarioRoute
   '/logistica': typeof LogisticaRoute
+  '/mi-cuenta': typeof MiCuentaRoute
   '/pedido': typeof PedidoRoute
   '/pedido-rapido': typeof PedidoRapidoRoute
+  '/registro': typeof RegistroRoute
   '/soporte': typeof SoporteRoute
+  '/admin/alertas': typeof AdminAlertasRoute
+  '/admin/boletas': typeof AdminBoletasRoute
+  '/admin/calidad-datos': typeof AdminCalidadDatosRoute
+  '/admin/chatbot': typeof AdminChatbotRoute
+  '/admin/estatus': typeof AdminEstatusRoute
+  '/admin/inventario': typeof AdminInventarioRoute
+  '/admin/logistica': typeof AdminLogisticaRoute
+  '/admin/pedido': typeof AdminPedidoRoute
+  '/admin/pedido-rapido': typeof AdminPedidoRapidoRoute
+  '/admin/soporte': typeof AdminSoporteRoute
+  '/api/admin-notificaciones': typeof ApiAdminNotificacionesRoute
+  '/api/asistente': typeof ApiAsistenteRoute
+  '/api/calidad-datos': typeof ApiCalidadDatosRoute
+  '/api/chat-metricas': typeof ApiChatMetricasRoute
+  '/api/compra': typeof ApiCompraRoute
+  '/api/cuenta': typeof ApiCuentaRoute
+  '/api/dolibarr': typeof ApiDolibarrRoute
+  '/api/entregas': typeof ApiEntregasRoute
+  '/api/entregas-previstas': typeof ApiEntregasPrevistasRoute
+  '/api/notificaciones': typeof ApiNotificacionesRoute
+  '/api/pago-cliente': typeof ApiPagoClienteRoute
+  '/api/pagos': typeof ApiPagosRoute
+  '/api/pedido-detalle': typeof ApiPedidoDetalleRoute
+  '/api/pedidos': typeof ApiPedidosRoute
+  '/api/producto-foto': typeof ApiProductoFotoRoute
+  '/api/recojos': typeof ApiRecojosRoute
+  '/api/registro': typeof ApiRegistroRoute
+  '/api/reporte-comentario': typeof ApiReporteComentarioRoute
+  '/api/sesion': typeof ApiSesionRoute
+  '/api/tienda': typeof ApiTiendaRoute
   '/producto/$sku': typeof ProductoSkuRoute
+  '/admin': typeof AdminIndexRoute
+  '/admin/producto/$sku': typeof AdminProductoSkuRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/acceso': typeof AccesoRoute
+  '/admin': typeof AdminRouteWithChildren
   '/alertas': typeof AlertasRoute
   '/boletas': typeof BoletasRoute
+  '/carrito': typeof CarritoRoute
   '/estatus': typeof EstatusRoute
   '/inventario': typeof InventarioRoute
   '/logistica': typeof LogisticaRoute
+  '/mi-cuenta': typeof MiCuentaRoute
   '/pedido': typeof PedidoRoute
   '/pedido-rapido': typeof PedidoRapidoRoute
+  '/registro': typeof RegistroRoute
   '/soporte': typeof SoporteRoute
+  '/admin/alertas': typeof AdminAlertasRoute
+  '/admin/boletas': typeof AdminBoletasRoute
+  '/admin/calidad-datos': typeof AdminCalidadDatosRoute
+  '/admin/chatbot': typeof AdminChatbotRoute
+  '/admin/estatus': typeof AdminEstatusRoute
+  '/admin/inventario': typeof AdminInventarioRoute
+  '/admin/logistica': typeof AdminLogisticaRoute
+  '/admin/pedido': typeof AdminPedidoRoute
+  '/admin/pedido-rapido': typeof AdminPedidoRapidoRoute
+  '/admin/soporte': typeof AdminSoporteRoute
+  '/api/admin-notificaciones': typeof ApiAdminNotificacionesRoute
+  '/api/asistente': typeof ApiAsistenteRoute
+  '/api/calidad-datos': typeof ApiCalidadDatosRoute
+  '/api/chat-metricas': typeof ApiChatMetricasRoute
+  '/api/compra': typeof ApiCompraRoute
+  '/api/cuenta': typeof ApiCuentaRoute
+  '/api/dolibarr': typeof ApiDolibarrRoute
+  '/api/entregas': typeof ApiEntregasRoute
+  '/api/entregas-previstas': typeof ApiEntregasPrevistasRoute
+  '/api/notificaciones': typeof ApiNotificacionesRoute
+  '/api/pago-cliente': typeof ApiPagoClienteRoute
+  '/api/pagos': typeof ApiPagosRoute
+  '/api/pedido-detalle': typeof ApiPedidoDetalleRoute
+  '/api/pedidos': typeof ApiPedidosRoute
+  '/api/producto-foto': typeof ApiProductoFotoRoute
+  '/api/recojos': typeof ApiRecojosRoute
+  '/api/registro': typeof ApiRegistroRoute
+  '/api/reporte-comentario': typeof ApiReporteComentarioRoute
+  '/api/sesion': typeof ApiSesionRoute
+  '/api/tienda': typeof ApiTiendaRoute
   '/producto/$sku': typeof ProductoSkuRoute
+  '/admin/': typeof AdminIndexRoute
+  '/admin/producto/$sku': typeof AdminProductoSkuRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/acceso'
+    | '/admin'
     | '/alertas'
     | '/boletas'
+    | '/carrito'
     | '/estatus'
     | '/inventario'
     | '/logistica'
+    | '/mi-cuenta'
     | '/pedido'
     | '/pedido-rapido'
+    | '/registro'
     | '/soporte'
+    | '/admin/alertas'
+    | '/admin/boletas'
+    | '/admin/calidad-datos'
+    | '/admin/chatbot'
+    | '/admin/estatus'
+    | '/admin/inventario'
+    | '/admin/logistica'
+    | '/admin/pedido'
+    | '/admin/pedido-rapido'
+    | '/admin/soporte'
+    | '/api/admin-notificaciones'
+    | '/api/asistente'
+    | '/api/calidad-datos'
+    | '/api/chat-metricas'
+    | '/api/compra'
+    | '/api/cuenta'
+    | '/api/dolibarr'
+    | '/api/entregas'
+    | '/api/entregas-previstas'
+    | '/api/notificaciones'
+    | '/api/pago-cliente'
+    | '/api/pagos'
+    | '/api/pedido-detalle'
+    | '/api/pedidos'
+    | '/api/producto-foto'
+    | '/api/recojos'
+    | '/api/registro'
+    | '/api/reporte-comentario'
+    | '/api/sesion'
+    | '/api/tienda'
     | '/producto/$sku'
+    | '/admin/'
+    | '/admin/producto/$sku'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/acceso'
     | '/alertas'
     | '/boletas'
+    | '/carrito'
     | '/estatus'
     | '/inventario'
     | '/logistica'
+    | '/mi-cuenta'
     | '/pedido'
     | '/pedido-rapido'
+    | '/registro'
     | '/soporte'
+    | '/admin/alertas'
+    | '/admin/boletas'
+    | '/admin/calidad-datos'
+    | '/admin/chatbot'
+    | '/admin/estatus'
+    | '/admin/inventario'
+    | '/admin/logistica'
+    | '/admin/pedido'
+    | '/admin/pedido-rapido'
+    | '/admin/soporte'
+    | '/api/admin-notificaciones'
+    | '/api/asistente'
+    | '/api/calidad-datos'
+    | '/api/chat-metricas'
+    | '/api/compra'
+    | '/api/cuenta'
+    | '/api/dolibarr'
+    | '/api/entregas'
+    | '/api/entregas-previstas'
+    | '/api/notificaciones'
+    | '/api/pago-cliente'
+    | '/api/pagos'
+    | '/api/pedido-detalle'
+    | '/api/pedidos'
+    | '/api/producto-foto'
+    | '/api/recojos'
+    | '/api/registro'
+    | '/api/reporte-comentario'
+    | '/api/sesion'
+    | '/api/tienda'
     | '/producto/$sku'
+    | '/admin'
+    | '/admin/producto/$sku'
   id:
     | '__root__'
     | '/'
+    | '/acceso'
+    | '/admin'
     | '/alertas'
     | '/boletas'
+    | '/carrito'
     | '/estatus'
     | '/inventario'
     | '/logistica'
+    | '/mi-cuenta'
     | '/pedido'
     | '/pedido-rapido'
+    | '/registro'
     | '/soporte'
+    | '/admin/alertas'
+    | '/admin/boletas'
+    | '/admin/calidad-datos'
+    | '/admin/chatbot'
+    | '/admin/estatus'
+    | '/admin/inventario'
+    | '/admin/logistica'
+    | '/admin/pedido'
+    | '/admin/pedido-rapido'
+    | '/admin/soporte'
+    | '/api/admin-notificaciones'
+    | '/api/asistente'
+    | '/api/calidad-datos'
+    | '/api/chat-metricas'
+    | '/api/compra'
+    | '/api/cuenta'
+    | '/api/dolibarr'
+    | '/api/entregas'
+    | '/api/entregas-previstas'
+    | '/api/notificaciones'
+    | '/api/pago-cliente'
+    | '/api/pagos'
+    | '/api/pedido-detalle'
+    | '/api/pedidos'
+    | '/api/producto-foto'
+    | '/api/recojos'
+    | '/api/registro'
+    | '/api/reporte-comentario'
+    | '/api/sesion'
+    | '/api/tienda'
     | '/producto/$sku'
+    | '/admin/'
+    | '/admin/producto/$sku'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccesoRoute: typeof AccesoRoute
+  AdminRoute: typeof AdminRouteWithChildren
   AlertasRoute: typeof AlertasRoute
   BoletasRoute: typeof BoletasRoute
+  CarritoRoute: typeof CarritoRoute
   EstatusRoute: typeof EstatusRoute
   InventarioRoute: typeof InventarioRoute
   LogisticaRoute: typeof LogisticaRoute
+  MiCuentaRoute: typeof MiCuentaRoute
   PedidoRoute: typeof PedidoRoute
   PedidoRapidoRoute: typeof PedidoRapidoRoute
+  RegistroRoute: typeof RegistroRoute
   SoporteRoute: typeof SoporteRoute
+  ApiAdminNotificacionesRoute: typeof ApiAdminNotificacionesRoute
+  ApiAsistenteRoute: typeof ApiAsistenteRoute
+  ApiCalidadDatosRoute: typeof ApiCalidadDatosRoute
+  ApiChatMetricasRoute: typeof ApiChatMetricasRoute
+  ApiCompraRoute: typeof ApiCompraRoute
+  ApiCuentaRoute: typeof ApiCuentaRoute
+  ApiDolibarrRoute: typeof ApiDolibarrRoute
+  ApiEntregasRoute: typeof ApiEntregasRoute
+  ApiEntregasPrevistasRoute: typeof ApiEntregasPrevistasRoute
+  ApiNotificacionesRoute: typeof ApiNotificacionesRoute
+  ApiPagoClienteRoute: typeof ApiPagoClienteRoute
+  ApiPagosRoute: typeof ApiPagosRoute
+  ApiPedidoDetalleRoute: typeof ApiPedidoDetalleRoute
+  ApiPedidosRoute: typeof ApiPedidosRoute
+  ApiProductoFotoRoute: typeof ApiProductoFotoRoute
+  ApiRecojosRoute: typeof ApiRecojosRoute
+  ApiRegistroRoute: typeof ApiRegistroRoute
+  ApiReporteComentarioRoute: typeof ApiReporteComentarioRoute
+  ApiSesionRoute: typeof ApiSesionRoute
+  ApiTiendaRoute: typeof ApiTiendaRoute
   ProductoSkuRoute: typeof ProductoSkuRoute
 }
 
@@ -167,6 +634,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/acceso': {
+      id: '/acceso'
+      path: '/acceso'
+      fullPath: '/acceso'
+      preLoaderRoute: typeof AccesoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/alertas': {
@@ -181,6 +662,13 @@ declare module '@tanstack/react-router' {
       path: '/boletas'
       fullPath: '/boletas'
       preLoaderRoute: typeof BoletasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/carrito': {
+      id: '/carrito'
+      path: '/carrito'
+      fullPath: '/carrito'
+      preLoaderRoute: typeof CarritoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/estatus': {
@@ -204,6 +692,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LogisticaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mi-cuenta': {
+      id: '/mi-cuenta'
+      path: '/mi-cuenta'
+      fullPath: '/mi-cuenta'
+      preLoaderRoute: typeof MiCuentaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pedido': {
       id: '/pedido'
       path: '/pedido'
@@ -218,11 +713,235 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PedidoRapidoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/registro': {
+      id: '/registro'
+      path: '/registro'
+      fullPath: '/registro'
+      preLoaderRoute: typeof RegistroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/soporte': {
       id: '/soporte'
       path: '/soporte'
       fullPath: '/soporte'
       preLoaderRoute: typeof SoporteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/alertas': {
+      id: '/admin/alertas'
+      path: '/alertas'
+      fullPath: '/admin/alertas'
+      preLoaderRoute: typeof AdminAlertasRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/boletas': {
+      id: '/admin/boletas'
+      path: '/boletas'
+      fullPath: '/admin/boletas'
+      preLoaderRoute: typeof AdminBoletasRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/calidad-datos': {
+      id: '/admin/calidad-datos'
+      path: '/calidad-datos'
+      fullPath: '/admin/calidad-datos'
+      preLoaderRoute: typeof AdminCalidadDatosRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/chatbot': {
+      id: '/admin/chatbot'
+      path: '/chatbot'
+      fullPath: '/admin/chatbot'
+      preLoaderRoute: typeof AdminChatbotRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/estatus': {
+      id: '/admin/estatus'
+      path: '/estatus'
+      fullPath: '/admin/estatus'
+      preLoaderRoute: typeof AdminEstatusRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/inventario': {
+      id: '/admin/inventario'
+      path: '/inventario'
+      fullPath: '/admin/inventario'
+      preLoaderRoute: typeof AdminInventarioRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/logistica': {
+      id: '/admin/logistica'
+      path: '/logistica'
+      fullPath: '/admin/logistica'
+      preLoaderRoute: typeof AdminLogisticaRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/pedido': {
+      id: '/admin/pedido'
+      path: '/pedido'
+      fullPath: '/admin/pedido'
+      preLoaderRoute: typeof AdminPedidoRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/pedido-rapido': {
+      id: '/admin/pedido-rapido'
+      path: '/pedido-rapido'
+      fullPath: '/admin/pedido-rapido'
+      preLoaderRoute: typeof AdminPedidoRapidoRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/soporte': {
+      id: '/admin/soporte'
+      path: '/soporte'
+      fullPath: '/admin/soporte'
+      preLoaderRoute: typeof AdminSoporteRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/api/admin-notificaciones': {
+      id: '/api/admin-notificaciones'
+      path: '/api/admin-notificaciones'
+      fullPath: '/api/admin-notificaciones'
+      preLoaderRoute: typeof ApiAdminNotificacionesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/asistente': {
+      id: '/api/asistente'
+      path: '/api/asistente'
+      fullPath: '/api/asistente'
+      preLoaderRoute: typeof ApiAsistenteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/calidad-datos': {
+      id: '/api/calidad-datos'
+      path: '/api/calidad-datos'
+      fullPath: '/api/calidad-datos'
+      preLoaderRoute: typeof ApiCalidadDatosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/chat-metricas': {
+      id: '/api/chat-metricas'
+      path: '/api/chat-metricas'
+      fullPath: '/api/chat-metricas'
+      preLoaderRoute: typeof ApiChatMetricasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/compra': {
+      id: '/api/compra'
+      path: '/api/compra'
+      fullPath: '/api/compra'
+      preLoaderRoute: typeof ApiCompraRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cuenta': {
+      id: '/api/cuenta'
+      path: '/api/cuenta'
+      fullPath: '/api/cuenta'
+      preLoaderRoute: typeof ApiCuentaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/dolibarr': {
+      id: '/api/dolibarr'
+      path: '/api/dolibarr'
+      fullPath: '/api/dolibarr'
+      preLoaderRoute: typeof ApiDolibarrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/entregas': {
+      id: '/api/entregas'
+      path: '/api/entregas'
+      fullPath: '/api/entregas'
+      preLoaderRoute: typeof ApiEntregasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/entregas-previstas': {
+      id: '/api/entregas-previstas'
+      path: '/api/entregas-previstas'
+      fullPath: '/api/entregas-previstas'
+      preLoaderRoute: typeof ApiEntregasPrevistasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/notificaciones': {
+      id: '/api/notificaciones'
+      path: '/api/notificaciones'
+      fullPath: '/api/notificaciones'
+      preLoaderRoute: typeof ApiNotificacionesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/pago-cliente': {
+      id: '/api/pago-cliente'
+      path: '/api/pago-cliente'
+      fullPath: '/api/pago-cliente'
+      preLoaderRoute: typeof ApiPagoClienteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/pagos': {
+      id: '/api/pagos'
+      path: '/api/pagos'
+      fullPath: '/api/pagos'
+      preLoaderRoute: typeof ApiPagosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/pedido-detalle': {
+      id: '/api/pedido-detalle'
+      path: '/api/pedido-detalle'
+      fullPath: '/api/pedido-detalle'
+      preLoaderRoute: typeof ApiPedidoDetalleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/pedidos': {
+      id: '/api/pedidos'
+      path: '/api/pedidos'
+      fullPath: '/api/pedidos'
+      preLoaderRoute: typeof ApiPedidosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/producto-foto': {
+      id: '/api/producto-foto'
+      path: '/api/producto-foto'
+      fullPath: '/api/producto-foto'
+      preLoaderRoute: typeof ApiProductoFotoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/recojos': {
+      id: '/api/recojos'
+      path: '/api/recojos'
+      fullPath: '/api/recojos'
+      preLoaderRoute: typeof ApiRecojosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/registro': {
+      id: '/api/registro'
+      path: '/api/registro'
+      fullPath: '/api/registro'
+      preLoaderRoute: typeof ApiRegistroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/reporte-comentario': {
+      id: '/api/reporte-comentario'
+      path: '/api/reporte-comentario'
+      fullPath: '/api/reporte-comentario'
+      preLoaderRoute: typeof ApiReporteComentarioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/sesion': {
+      id: '/api/sesion'
+      path: '/api/sesion'
+      fullPath: '/api/sesion'
+      preLoaderRoute: typeof ApiSesionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/tienda': {
+      id: '/api/tienda'
+      path: '/api/tienda'
+      fullPath: '/api/tienda'
+      preLoaderRoute: typeof ApiTiendaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/producto/$sku': {
@@ -232,19 +951,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductoSkuRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/producto/$sku': {
+      id: '/admin/producto/$sku'
+      path: '/producto/$sku'
+      fullPath: '/admin/producto/$sku'
+      preLoaderRoute: typeof AdminProductoSkuRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminAlertasRoute: typeof AdminAlertasRoute
+  AdminBoletasRoute: typeof AdminBoletasRoute
+  AdminCalidadDatosRoute: typeof AdminCalidadDatosRoute
+  AdminChatbotRoute: typeof AdminChatbotRoute
+  AdminEstatusRoute: typeof AdminEstatusRoute
+  AdminInventarioRoute: typeof AdminInventarioRoute
+  AdminLogisticaRoute: typeof AdminLogisticaRoute
+  AdminPedidoRoute: typeof AdminPedidoRoute
+  AdminPedidoRapidoRoute: typeof AdminPedidoRapidoRoute
+  AdminSoporteRoute: typeof AdminSoporteRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminProductoSkuRoute: typeof AdminProductoSkuRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAlertasRoute: AdminAlertasRoute,
+  AdminBoletasRoute: AdminBoletasRoute,
+  AdminCalidadDatosRoute: AdminCalidadDatosRoute,
+  AdminChatbotRoute: AdminChatbotRoute,
+  AdminEstatusRoute: AdminEstatusRoute,
+  AdminInventarioRoute: AdminInventarioRoute,
+  AdminLogisticaRoute: AdminLogisticaRoute,
+  AdminPedidoRoute: AdminPedidoRoute,
+  AdminPedidoRapidoRoute: AdminPedidoRapidoRoute,
+  AdminSoporteRoute: AdminSoporteRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  AdminProductoSkuRoute: AdminProductoSkuRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccesoRoute: AccesoRoute,
+  AdminRoute: AdminRouteWithChildren,
   AlertasRoute: AlertasRoute,
   BoletasRoute: BoletasRoute,
+  CarritoRoute: CarritoRoute,
   EstatusRoute: EstatusRoute,
   InventarioRoute: InventarioRoute,
   LogisticaRoute: LogisticaRoute,
+  MiCuentaRoute: MiCuentaRoute,
   PedidoRoute: PedidoRoute,
   PedidoRapidoRoute: PedidoRapidoRoute,
+  RegistroRoute: RegistroRoute,
   SoporteRoute: SoporteRoute,
+  ApiAdminNotificacionesRoute: ApiAdminNotificacionesRoute,
+  ApiAsistenteRoute: ApiAsistenteRoute,
+  ApiCalidadDatosRoute: ApiCalidadDatosRoute,
+  ApiChatMetricasRoute: ApiChatMetricasRoute,
+  ApiCompraRoute: ApiCompraRoute,
+  ApiCuentaRoute: ApiCuentaRoute,
+  ApiDolibarrRoute: ApiDolibarrRoute,
+  ApiEntregasRoute: ApiEntregasRoute,
+  ApiEntregasPrevistasRoute: ApiEntregasPrevistasRoute,
+  ApiNotificacionesRoute: ApiNotificacionesRoute,
+  ApiPagoClienteRoute: ApiPagoClienteRoute,
+  ApiPagosRoute: ApiPagosRoute,
+  ApiPedidoDetalleRoute: ApiPedidoDetalleRoute,
+  ApiPedidosRoute: ApiPedidosRoute,
+  ApiProductoFotoRoute: ApiProductoFotoRoute,
+  ApiRecojosRoute: ApiRecojosRoute,
+  ApiRegistroRoute: ApiRegistroRoute,
+  ApiReporteComentarioRoute: ApiReporteComentarioRoute,
+  ApiSesionRoute: ApiSesionRoute,
+  ApiTiendaRoute: ApiTiendaRoute,
   ProductoSkuRoute: ProductoSkuRoute,
 }
 export const routeTree = rootRouteImport

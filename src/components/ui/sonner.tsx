@@ -1,8 +1,17 @@
+import { useEffect, useState } from "react";
 import { Toaster as Sonner } from "sonner";
 
 type ToasterProps = React.ComponentProps<typeof Sonner>;
 
 const Toaster = ({ ...props }: ToasterProps) => {
+  const [mobile, setMobile] = useState(false);
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 639px)");
+    const update = () => setMobile(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
   return (
     <Sonner
       className="toaster group"
@@ -16,6 +25,9 @@ const Toaster = ({ ...props }: ToasterProps) => {
         },
       }}
       {...props}
+      position={mobile ? "bottom-center" : (props.position ?? "top-right")}
+      visibleToasts={mobile ? 1 : (props.visibleToasts ?? 2)}
+      mobileOffset={{ bottom: "calc(env(safe-area-inset-bottom) + 84px)", left: 12, right: 12 }}
     />
   );
 };

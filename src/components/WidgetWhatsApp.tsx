@@ -9,7 +9,7 @@ export function WidgetWhatsApp() {
   const [burbujaVisible, setBurbujaVisible] = useState(true);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex items-end gap-3">
+    <div className="whatsapp-widget fixed bottom-6 right-6 z-50 flex items-end gap-3">
       {burbujaVisible ? (
         <div className="relative max-w-56 rounded-2xl rounded-br-sm border border-border bg-card px-4 py-3 shadow-card-hover">
           <button
